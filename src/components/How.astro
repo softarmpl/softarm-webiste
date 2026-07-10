@@ -1,0 +1,86 @@
+---
+const steps = [
+  {
+    n: "01",
+    title: "Rozmowa - bezpłatna, 30 min",
+    body: "Opowiadasz o pomyśle. Mówię wprost, co ma sens w pierwszej wersji, a co jest zbędnym kosztem. Wychodzisz z jednostronicowym planem - nawet jeśli nie zdecydujesz się na współpracę.",
+  },
+  {
+    n: "02",
+    title: "Oferta - stała cena, stały termin",
+    body: "Dostajesz konkretny zakres, cenę i datę oddania. Na piśmie. Dwie rundy poprawek w cenie. Zero „to zajmie jeszcze dwa sprinty”.",
+  },
+  {
+    n: "03",
+    title: "Budowa - 5 tygodni",
+    body: "Co tydzień widzisz postęp na żywo, nie w raportach. Na końcu masz działający produkt, gotowy na pierwszych użytkowników.",
+  },
+  {
+    n: "04",
+    title: "Po starcie - nie znikam",
+    body: "Zostajesz na opiece technicznej i rozwoju albo przejmujesz projekt z pełną dokumentacją. Kod i infrastruktura są Twoje.",
+  },
+];
+---
+<section id="jak" class="how">
+  <div class="wrap">
+    <div class="how-head">
+      <p class="eyebrow">Dla kogo · jak to działa</p>
+      <h2 class="how-title">Jedna osoba bierze odpowiedzialność za&nbsp;całość.</h2>
+      <p class="how-lead">
+        Pracuję z founderami i firmami, które mają pomysł, ale nie mają zespołu
+        technicznego - albo sparzyły się na software housie czy freelancerze
+        i&nbsp;chcą kogoś, kto weźmie odpowiedzialność za wynik, nie za godziny.
+        Nieważne, czy budujesz pierwszy produkt, czy dokładasz moduł do
+        istniejącego - mały, świeży pomysł traktuję tak samo poważnie jak
+        wdrożenie za miliony.
+      </p>
+    </div>
+
+    <ol class="steps">
+      {steps.map((s) => (
+        <li class="step">
+          <span class="step-n">{s.n}</span>
+          <div class="step-body">
+            <h3 class="step-title">{s.title}</h3>
+            <p class="step-text">{s.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .how { background: var(--paper-pure); border-block: 1px solid var(--line); }
+  .how-head { max-width: 60ch; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+  .how-title { font-size: var(--step-3); margin-bottom: 1.2rem; }
+  .how-lead { font-size: var(--step-1); color: var(--ink-soft); line-height: 1.5; }
+
+  .steps {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .step {
+    background: var(--paper-pure);
+    padding: clamp(1.6rem, 3vw, 2.4rem);
+    display: flex;
+    gap: 1.2rem;
+  }
+  .step-n {
+    font-family: var(--mono);
+    font-size: var(--step-0);
+    color: var(--accent);
+    font-weight: 500;
+    padding-top: 0.2rem;
+  }
+  .step-title { font-size: var(--step-1); margin-bottom: 0.6rem; }
+  .step-text { color: var(--ink-soft); font-size: var(--step-0); }
+  @media (max-width: 720px) {
+    .steps { grid-template-columns: 1fr; }
+  }
+</style>

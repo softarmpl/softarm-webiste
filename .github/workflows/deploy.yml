@@ -1,0 +1,41 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Uruchom przy każdym pushu do main
+  push:
+    branches: [main]
+  # Pozwól odpalić ręcznie z zakładki Actions
+  workflow_dispatch:
+
+# Uprawnienia potrzebne do publikacji na GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Jeden deploy naraz; nie przerywaj trwającego
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build with Astro
+        uses: withastro/action@v3
+        with:
+          node-version: 22
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

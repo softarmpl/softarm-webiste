@@ -1,0 +1,85 @@
+:root {
+  /* Paleta - jasna, inwestorska, jeden akcent */
+  --ink: #14202e;          /* granatowo-atramentowy tekst */
+  --ink-soft: #45566a;     /* tekst drugorzędny */
+  --paper: #f7f5f0;        /* off-white tło */
+  --paper-pure: #fdfcfa;   /* karty, jaśniejsze */
+  --line: #dcd8cf;         /* hairline dividers */
+  --accent: #1f6f5c;       /* stonowany zielono-morski */
+  --accent-deep: #16513f;
+  --accent-wash: #e8f0ec;  /* delikatne tło akcentu */
+
+  /* Typografia */
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --body: "Inter", system-ui, -apple-system, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", monospace;
+
+  /* Skala */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.12rem);
+  --step-1: clamp(1.25rem, 1.1rem + 0.6vw, 1.6rem);
+  --step-2: clamp(1.6rem, 1.3rem + 1.4vw, 2.4rem);
+  --step-3: clamp(2.2rem, 1.6rem + 2.8vw, 3.8rem);
+  --step-4: clamp(3rem, 2rem + 5vw, 5.5rem);
+
+  --maxw: 1120px;
+  --gutter: clamp(1.2rem, 5vw, 4rem);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+
+section { padding-block: clamp(3.5rem, 8vw, 7rem); }
+
+h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; }
+
+a { color: inherit; }
+
+/* Eyebrow - etykieta sekcji */
+.eyebrow {
+  font-family: var(--mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+/* Przyciski */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: var(--step-0);
+  padding: 0.85rem 1.6rem;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { background: var(--accent-deep); transform: translateY(-2px); }
+.btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+
+/* Dividery */
+.rule { height: 1px; background: var(--line); border: 0; }
