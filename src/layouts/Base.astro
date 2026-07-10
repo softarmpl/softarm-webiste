@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Analytics from "../components/Analytics.astro";
 const { title = "MVP w 5 tygodni - stała cena, gwarancja terminu", description = "Buduję MVP od pomysłu do działającego produktu. 16 lat doświadczenia w fintech, cybersecurity i lotnictwie. Stała cena, stały termin." } = Astro.props;
 ---
 <!doctype html>
@@ -7,6 +8,7 @@ const { title = "MVP w 5 tygodni - stała cena, gwarancja terminu", description 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <Analytics />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
