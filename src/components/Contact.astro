@@ -2,7 +2,15 @@
 const faqs = [
   {
     q: "Ile kosztuje MVP?",
-    a: "Typowy projekt zaczyna się od 35 000 zł. Dokładną cenę znasz przed startem i ona się nie zmienia.",
+    a: "Typowy projekt zaczyna się od 35 000 zł netto. Dokładną cenę znasz przed startem i ona się nie zmienia.",
+  },
+  {
+    q: "Jak działa gwarancja terminu w praktyce?",
+    a: "Datę oddania ustalamy na piśmie przed startem. Jeśli nie dowiozę na czas z mojej winy, pracuję dalej bez dodatkowych kosztów — aż produkt będzie gotowy.",
+  },
+  {
+    q: "Mój pomysł jest większy niż 5 tygodni — co wtedy?",
+    a: "Na rozmowie tniemy zakres do najważniejszego MVP, które da się dowieźć w 5 tygodni, a resztę planujemy na kolejne etapy. Dostajesz działający produkt szybko, nie obietnicę za pół roku.",
   },
   {
     q: "Co jeśli w trakcie zmienię zdanie?",
@@ -39,6 +47,10 @@ const faqs = [
       Masz pomysł? Sprawdźmy w 30 minut,<br />
       czy da się go zbudować w 5 tygodni.
     </h2>
+    <p class="offer cta-offer">
+      <strong>Od 35 000&nbsp;zł netto</strong> · stała cena. Nie zdążę na
+      termin — <strong>dokańczam za&nbsp;darmo.</strong>
+    </p>
     <div class="cta-actions">
       <a href="https://calendly.com/kamil-softarm/30min" class="btn btn-primary">Umów bezpłatną rozmowę →</a>
     </div>
@@ -107,7 +119,8 @@ const faqs = [
 
   .cta { background: var(--accent-wash); border-block: 1px solid var(--line); }
   .cta-inner { text-align: center; }
-  .cta-title { font-size: var(--step-3); margin-bottom: 2rem; }
+  .cta-title { font-size: var(--step-3); margin-bottom: 1.5rem; }
+  .cta-offer { margin-bottom: 2rem; }
   .cta-actions {
     display: flex;
     align-items: center;

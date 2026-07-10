@@ -13,9 +13,13 @@
       realne pieniądze. Bez agencji, bez zespołu w telefonie, bez niespodzianek
       w budżecie.
     </p>
+    <p class="offer">
+      <strong>Od 35 000&nbsp;zł netto</strong> · stała cena. Nie zdążę na
+      termin — <strong>dokańczam za&nbsp;darmo.</strong>
+    </p>
     <div class="hero-actions">
       <a href="#kontakt" class="btn btn-primary">Umów bezpłatną rozmowę →</a>
-      <a href="#projekty" class="hero-link">Zobacz projekty</a>
+      <a href="#efekty" class="hero-link">Zobacz projekty</a>
     </div>
 
     <div class="dash" role="list" aria-label="Kluczowe liczby">
@@ -51,8 +55,9 @@
     font-size: var(--step-1);
     line-height: 1.5;
     color: var(--ink-soft);
-    margin-bottom: 2.2rem;
+    margin-bottom: 1.6rem;
   }
+  .offer { margin-bottom: 2.2rem; }
   .hero-actions {
     display: flex;
     align-items: center;
@@ -76,10 +81,11 @@
     border-top: 1px solid var(--ink);
   }
   .dash-cell {
-    padding: 1.6rem 1.6rem 1.6rem 0;
+    padding: 1.6rem 1.6rem;
     border-right: 1px solid var(--line);
   }
-  .dash-cell:last-child { border-right: 0; }
+  .dash-cell:first-child { padding-left: 0; }
+  .dash-cell:last-child { border-right: 0; padding-right: 0; }
   .dash-num {
     display: block;
     font-family: var(--mono);
@@ -101,7 +107,7 @@
     .dash-cell {
       border-right: 0;
       border-bottom: 1px solid var(--line);
-      padding-right: 0;
+      padding: 1.6rem 0;
     }
     .dash-cell:last-child { border-bottom: 0; }
   }
