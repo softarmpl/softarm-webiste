@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  # Waliduj pushe na wszystkie branche POZA main (main ma osobny deploy)
+  push:
+    branches-ignore: [main]
+  # Waliduj PR-y celujące w main
+  pull_request:
+    branches: [main]
+
+# Nie dubluj przebiegów dla tego samego brancha/PR-a
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint / typecheck (astro check)
+        run: npm run check
+      - name: Test build
+        run: npm run build
