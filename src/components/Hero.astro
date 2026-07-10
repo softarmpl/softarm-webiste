@@ -1,0 +1,108 @@
+---
+---
+<section id="top" class="hero">
+  <div class="wrap">
+    <h1 class="hero-title">
+      Twój produkt online<br />
+      w <span class="hl">5 tygodni</span>.<br />
+      Stała cena, gwarancja terminu.
+    </h1>
+    <p class="hero-sub">
+      Buduję MVP od pomysłu do działającego produktu - jedna osoba, pełna
+      odpowiedzialność, 16 lat doświadczenia w branżach, gdzie błąd kosztuje
+      realne pieniądze. Bez agencji, bez zespołu w telefonie, bez niespodzianek
+      w budżecie.
+    </p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn btn-primary">Umów bezpłatną rozmowę →</a>
+      <a href="#projekty" class="hero-link">Zobacz projekty</a>
+    </div>
+
+    <div class="dash" role="list" aria-label="Kluczowe liczby">
+      <div class="dash-cell" role="listitem">
+        <span class="dash-num">~40&nbsp;mln zł</span>
+        <span class="dash-label">zainwestowane przez platformę fintech, którą prowadziłem od zera</span>
+      </div>
+      <div class="dash-cell" role="listitem">
+        <span class="dash-num">16 lat</span>
+        <span class="dash-label">prowadzenia projektów od pierwszej rozmowy po wdrożenie</span>
+      </div>
+      <div class="dash-cell" role="listitem">
+        <span class="dash-num">0 włamań</span>
+        <span class="dash-label">w systemie z 4000 użytkowników, który sam był celem realnych ataków</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding-top: clamp(3rem, 7vw, 5.5rem); }
+  .hero-title {
+    font-size: var(--step-4);
+    max-width: 15ch;
+    margin-bottom: 1.6rem;
+    overflow-wrap: break-word;
+  }
+  .hl {
+    color: var(--accent);
+  }
+  .hero-sub {
+    max-width: 56ch;
+    font-size: var(--step-1);
+    line-height: 1.5;
+    color: var(--ink-soft);
+    margin-bottom: 2.2rem;
+  }
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: clamp(3rem, 7vw, 5rem);
+  }
+  .hero-link {
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid var(--line);
+    padding-bottom: 2px;
+    transition: border-color 0.15s ease;
+  }
+  .hero-link:hover { border-color: var(--accent); }
+
+  /* Signature element - deska rozdzielcza liczb */
+  .dash {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--ink);
+  }
+  .dash-cell {
+    padding: 1.6rem 1.6rem 1.6rem 0;
+    border-right: 1px solid var(--line);
+  }
+  .dash-cell:last-child { border-right: 0; }
+  .dash-num {
+    display: block;
+    font-family: var(--mono);
+    font-size: var(--step-2);
+    font-weight: 500;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+  .dash-label {
+    display: block;
+    font-size: var(--step--1);
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 30ch;
+  }
+  @media (max-width: 760px) {
+    .dash { grid-template-columns: 1fr; }
+    .dash-cell {
+      border-right: 0;
+      border-bottom: 1px solid var(--line);
+      padding-right: 0;
+    }
+    .dash-cell:last-child { border-bottom: 0; }
+  }
+</style>
