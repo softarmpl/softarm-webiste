@@ -81,10 +81,11 @@
     border-top: 1px solid var(--ink);
   }
   .dash-cell {
-    padding: 1.6rem 1.6rem 1.6rem 0;
+    padding: 1.6rem 1.6rem;
     border-right: 1px solid var(--line);
   }
-  .dash-cell:last-child { border-right: 0; }
+  .dash-cell:first-child { padding-left: 0; }
+  .dash-cell:last-child { border-right: 0; padding-right: 0; }
   .dash-num {
     display: block;
     font-family: var(--mono);
@@ -106,7 +107,7 @@
     .dash-cell {
       border-right: 0;
       border-bottom: 1px solid var(--line);
-      padding-right: 0;
+      padding: 1.6rem 0;
     }
     .dash-cell:last-child { border-bottom: 0; }
   }
