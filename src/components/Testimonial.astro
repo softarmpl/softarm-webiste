@@ -1,8 +1,11 @@
 ---
+import { dicts, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const t = dicts[Astro.props.lang].testimonial;
 ---
-<section id="opinia" class="tm">
+<section id="recommendation" class="tm">
   <div class="wrap">
-    <p class="eyebrow">Rekomendacja z LinkedIn</p>
+    <p class="eyebrow">{t.eyebrow}</p>
     <figure class="tm-card">
       <blockquote class="tm-quote">
         „Kamil and his team at Profil Software played a pivotal role in the
@@ -25,7 +28,7 @@
         <span class="tm-meta">
           <span class="tm-name">Oleg Sinitsin</span>
           <span class="tm-role">VP, RevOps &amp; Strategic Accounts</span>
-          <span class="tm-ctx">kwiecień 2024 · był klientem Kamila</span>
+          <span class="tm-ctx">{t.ctx}</span>
         </span>
       </figcaption>
     </figure>

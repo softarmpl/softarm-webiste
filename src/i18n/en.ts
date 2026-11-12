@@ -1,0 +1,163 @@
+import type { Dict } from "./pl";
+
+// All copy for the English version. Keep the shape identical to pl.ts.
+export const en: Dict = {
+  lang: "en",
+  meta: {
+    title: "Kamil Wałdoch: Tech Lead & Solutions Architect",
+    description:
+      "I take products from the first client conversation to production: presales, architecture, teams. 16 years in fintech, cybersecurity and aviation.",
+    jobTitle: "Tech Lead & Solutions Architect",
+  },
+  nav: {
+    about: "About",
+    work: "Work",
+    writing: "Writing",
+    services: "Working with me",
+    contact: "Contact",
+    menuLabel: "Open menu",
+    switchLabel: "PL",
+    switchTitle: "Wersja polska",
+  },
+  hero: {
+    eyebrow: "Tech Lead & Solutions Architect · Gdynia, Poland",
+    name: "Kamil Wałdoch",
+    lead: "I take products from the first client conversation to production. I design the architecture, lead the teams that build it, and work with the business on what actually needs to be built.",
+    thesis: ["AI made writing code cheap.", "It didn't make decisions cheap."],
+    ctaPrimary: "Get in touch",
+    ctaSecondary: "LinkedIn",
+    statsLabel: "Key numbers",
+    stats: [
+      { num: "16 years", label: "in software, from developer to leading products and teams" },
+      { num: "8 products", label: "shipped to production at Profil Software" },
+      { num: "2 teams", label: "led in parallel, 5–9 people each" },
+    ],
+  },
+  about: {
+    eyebrow: "About",
+    title: "Between the business and the team",
+    photoAlt: "Kamil Wałdoch",
+    paragraphs: [
+      "I've been building software for 16 years, the last 8 at Profil Software. I usually start before the first line of code: in presales, a client workshop or an estimate. I've worked with clients in Poland, the US, Norway and Saudi Arabia, with founders and with boards.",
+      "Then I design the architecture and lead the team that builds it. Usually two teams in parallel, 5–9 people each: frontend, backend, QA, UX. I run technical interviews, make hiring decisions, give feedback and provide input into reviews, promotions and pay.",
+      "What I value most is the relationship with clients. I've led engagements that ran for up to three years, clients have come back with new projects, and some followed me to Profil Software from my previous company, where I had started as a backend developer.",
+    ],
+    howTitle: "How I work",
+    how: [
+      { title: "Business first.", body: "Before anyone writes code, I want to know what the client pays for and what has to work first." },
+      { title: "I cut scope early.", body: "Better that than polishing features nobody pays for." },
+      { title: "Developers own their modules.", body: "I set the boundaries, the standards, and what has to survive production, a security review and an audit." },
+      { title: "AI in a team means standards, not licences.", body: "Shared context for agents, review rules for AI-generated code, AI in review, testing and CI." },
+    ],
+  },
+  work: {
+    eyebrow: "Selected work",
+    title: "Industries where mistakes are expensive",
+    labels: { problem: "Problem", did: "What I did", result: "Result" },
+    projects: [
+      {
+        tag: "Logistics · audit",
+        title: "IT department audit for a board",
+        metric: "18 people",
+        metricLabel: "IT team in a ~300-person company · one-month audit",
+        problem: "Everyone used AI tools, and larger projects were still late. The board wanted to know why.",
+        did: "Interviews with development, DevOps, IT support and management. A map of how work, releases and decisions actually flow.",
+        result: "Recommendations to the board on product ownership, planning and release process. Then technical interviews with candidates for their new Head of IT. Once he was hired, we went through the audit findings together.",
+      },
+      {
+        tag: "Fintech · Saudi Arabia",
+        title: "Wealth-management platform: LLM and SOC 2",
+        metric: "SOC 2",
+        metricLabel: "Type II · LLM in production since 12/2025",
+        problem: "A new product built from scratch with the LLM at its core, not bolted on. To sell it to more customers, it needed a security audit.",
+        did: "LLM features: LangGraph, monitoring with Arize Phoenix, large-document processing (OCR, embeddings, vector search), chat over documents, deal analysis, token cost control. Then the engineering side of SOC 2 Type II, working directly with the auditor, in about six months: backups, onboarding, AWS access logging, evidence collection.",
+        result: "The product in production and SOC 2 Type II compliance, and with it the credibility the client needed to sell.",
+      },
+      {
+        tag: "Cybersecurity",
+        title: "Network traffic analysis platform",
+        metric: "~4,000",
+        metricLabel: "users · zero successful breaches",
+        problem: "A system that was itself a target, processing hundreds of gigabytes of network traffic data.",
+        did: "Architecture on AWS, observability on Loki/Grafana, auth migration to OIDC (Keycloak), scaling the infrastructure down.",
+        result: "Zero successful breaches over its whole life. Cloud costs cut by roughly half.",
+      },
+      {
+        tag: "Aviation",
+        title: "Software for aviation",
+        metric: "2",
+        metricLabel: "products in production",
+        problem: "Maintenance optimisation for private jets, and a system for compliance and safety of commercial flights.",
+        did: "Presales and client workshops, technical lead for the project, code review, DevOps.",
+        result: "",
+      },
+    ],
+  },
+  experience: {
+    eyebrow: "Experience",
+    title: "16 years, three places",
+    items: [
+      {
+        org: "Profil Software",
+        role: "Tech Lead & Software Architect",
+        period: "since 2018",
+        body: "Presales, architecture and teams for clients in Poland, the US, Norway and Saudi Arabia. 8 products: fintech, cybersecurity, aviation, a stock-market simulation game, customer relations.",
+      },
+      {
+        org: "SoftArm",
+        role: "my own company",
+        period: "since 2012",
+        body: "Products for clients from idea to production and maintenance, technical lead for early-stage startups. Since 2018 my main engagement is Profil Software.",
+      },
+      {
+        org: "PIRO",
+        role: "Developer, Consultant & Trainer",
+        period: "2010–2014",
+        body: "Product company in the travel industry: a CRM for travel agencies and a reservation system for tour operators. Client rollouts and training, including at a university and trade fairs.",
+      },
+    ],
+    credentials: [
+      "AWS Certified Solutions Architect – Associate",
+      "MSc Computer Science",
+      "Postgraduate studies in IT Project Management",
+    ],
+  },
+  writing: {
+    eyebrow: "Writing",
+    title: "What I think about",
+    read: "Read",
+    back: "← All writing",
+    otherLang: "Czytaj po polsku",
+  },
+  services: {
+    eyebrow: "Working with me",
+    title: "Through SoftArm",
+    lead: "I sometimes work directly with companies through my own firm, SoftArm. Usually in one of three roles:",
+    items: [
+      { title: "Technical partner for a founder without a tech team.", body: "I help decide what to build first, find the right people and make sure the product reaches production." },
+      { title: "Architecture and production-readiness review.", body: "Before the product reaches customers or a security audit: what will break, what's a risk, what to fix first." },
+      { title: "Technical lead for a project.", body: "Architecture, standards and the team, including code written with AI." },
+    ],
+    cta: "Tell me what you need",
+  },
+  testimonial: {
+    eyebrow: "Recommendation",
+    ctx: "April 2024 · former client",
+  },
+  contact: {
+    title: "Let's talk",
+    lead: "Email or LinkedIn is the fastest way. I usually reply within a day.",
+    or: "or write here",
+    form: {
+      subject: "New message from softarm.pl",
+      name: "Name",
+      email: "Your email",
+      message: "How can I help?",
+      submit: "Send →",
+      sending: "Sending…",
+      error: "Couldn't send it. Please email kamil@softarm.pl.",
+      successTitle: "Thanks! Message sent.",
+      successSub: "I'll get back to you by email.",
+    },
+  },
+};

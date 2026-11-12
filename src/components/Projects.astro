@@ -1,43 +1,17 @@
 ---
-const projects = [
-  {
-    tag: "Fintech · crowdfunding",
-    title: "Platforma inwestycyjna dla start-upów",
-    metric: "~40 mln zł",
-    metricLabel: "zainwestowane · 6 lat działania",
-    challenge:
-      "Platforma, przez którą przepływają realne pieniądze inwestorów - gdzie błąd oznacza straty i utratę zaufania, a regulacje nie zostawiają miejsca na skróty.",
-    role: "Prowadziłem projekt od koncepcji do wdrożenia: architektura, kluczowe decyzje technologiczne, rozwój produktu we współpracy z biznesem.",
-  },
-  {
-    tag: "Cybersecurity",
-    title: "System analizy ruchu sieciowego",
-    metric: "0 włamań",
-    metricLabel: "4000 użytkowników · system pod realnym ostrzałem",
-    challenge:
-      "System, który sam był celem ataków. Bezpieczeństwo nie było funkcją, było fundamentem - rozwiązanie musiało wytrzymać próby włamań realnych przeciwników.",
-    role: "Architektura, prowadzenie zespołu i wdrożenie w chmurze AWS. System przetwarzał i udostępniał do dalszej analizy setki gigabajtów danych.",
-  },
-  {
-    tag: "Fintech · family office",
-    title: "Platforma zarządzania majątkiem",
-    metric: "SOC 2",
-    metricLabel: "certyfikacja w toku · współpraca 2+ lata",
-    challenge:
-      "Segment, w którym klient powierza aplikacji pełny obraz swoich finansów. Połączenie głębokiej domeny finansowej z najwyższymi wymogami bezpieczeństwa.",
-    role: "Kontakt z klientem, prowadzenie zespołu, nadzór nad developerami, wdrożenie w AWS. Prowadzę projekt przez certyfikację bezpieczeństwa SOC 2 od strony technologii.",
-  },
-];
+import { dicts, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const t = dicts[Astro.props.lang].work;
 ---
-<section id="efekty" class="proj">
+<section id="work" class="proj">
   <div class="wrap">
     <div class="proj-head">
-      <p class="eyebrow">Dowód, że dowożę</p>
-      <h2 class="proj-title">Za Twoim projektem stoi 16 lat z branż, gdzie błąd kosztuje&nbsp;naprawdę.</h2>
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h2 class="proj-title">{t.title}</h2>
     </div>
 
     <div class="cards">
-      {projects.map((p) => (
+      {t.projects.map((p) => (
         <article class="card">
           <div class="card-top">
             <span class="card-tag">{p.tag}</span>
@@ -47,9 +21,14 @@ const projects = [
             </div>
           </div>
           <h3 class="card-title">{p.title}</h3>
-          <p class="card-challenge">{p.challenge}</p>
-          <hr class="rule card-div" />
-          <p class="card-role"><span>Moja rola.</span> {p.role}</p>
+          <dl class="card-body">
+            <dt>{t.labels.problem}</dt>
+            <dd>{p.problem}</dd>
+            <dt>{t.labels.did}</dt>
+            <dd>{p.did}</dd>
+            {p.result && <dt>{t.labels.result}</dt>}
+            {p.result && <dd>{p.result}</dd>}
+          </dl>
         </article>
       ))}
     </div>
@@ -62,7 +41,7 @@ const projects = [
 
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 420px), 1fr));
     gap: 1.5rem;
   }
   .card {
@@ -106,8 +85,19 @@ const projects = [
     margin-top: 0.25rem;
   }
   .card-title { font-size: var(--step-1); margin-bottom: 0.8rem; }
-  .card-challenge { color: var(--ink-soft); font-size: var(--step-0); margin-bottom: 1.2rem; }
-  .card-div { margin-bottom: 1.2rem; }
-  .card-role { font-size: var(--step--1); line-height: 1.5; margin-top: auto; }
-  .card-role span { color: var(--accent); font-weight: 600; }
+  .card-body dt {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 1rem;
+  }
+  .card-body dt:first-child { margin-top: 0; }
+  .card-body dd {
+    font-size: var(--step--1);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-top: 0.25rem;
+  }
 </style>

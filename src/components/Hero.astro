@@ -1,51 +1,67 @@
 ---
+import { dicts, SITE, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const t = dicts[Astro.props.lang].hero;
 ---
 <section id="top" class="hero">
-  <div class="wrap">
-    <h1 class="hero-title">
-      Twój produkt online<br />
-      w <span class="hl">5 tygodni</span>.<br />
-      Stała cena, gwarancja terminu.
-    </h1>
-    <p class="hero-sub">
-      Buduję MVP od pomysłu do działającego produktu - jedna osoba, pełna
-      odpowiedzialność, 16 lat doświadczenia w branżach, gdzie błąd kosztuje
-      realne pieniądze. Bez agencji, bez zespołu w telefonie, bez niespodzianek
-      w budżecie.
-    </p>
-    <p class="offer">
-      <strong>Od 35 000&nbsp;zł netto</strong> · stała cena. Nie zdążę na
-      termin — <strong>dokańczam za&nbsp;darmo.</strong>
-    </p>
-    <div class="hero-actions">
-      <a href="#kontakt" class="btn btn-primary">Umów bezpłatną rozmowę →</a>
-      <a href="#efekty" class="hero-link">Zobacz projekty</a>
+  <div class="wrap hero-grid">
+    <div class="hero-main">
+      <p class="eyebrow">{t.eyebrow}</p>
+      <h1 class="hero-title">{t.name}</h1>
+      <p class="hero-sub">{t.lead}</p>
+      <p class="hero-thesis">{t.thesis[0]}<br /><span class="hl">{t.thesis[1]}</span></p>
+      <div class="hero-actions">
+        <a href={`mailto:${SITE.email}`} class="btn btn-primary">{t.ctaPrimary} →</a>
+        <a href={SITE.linkedin} class="hero-link" target="_blank" rel="noopener">{t.ctaSecondary}</a>
+      </div>
     </div>
+    <img class="hero-photo" src="/kamil.jpg" alt={t.name} width="320" height="320" />
+  </div>
 
-    <div class="dash" role="list" aria-label="Kluczowe liczby">
-      <div class="dash-cell" role="listitem">
-        <span class="dash-num">~40&nbsp;mln zł</span>
-        <span class="dash-label">zainwestowane przez platformę fintech, którą prowadziłem od zera</span>
-      </div>
-      <div class="dash-cell" role="listitem">
-        <span class="dash-num">16 lat</span>
-        <span class="dash-label">prowadzenia projektów od pierwszej rozmowy po wdrożenie</span>
-      </div>
-      <div class="dash-cell" role="listitem">
-        <span class="dash-num">0 włamań</span>
-        <span class="dash-label">w systemie z 4000 użytkowników, który sam był celem realnych ataków</span>
-      </div>
+  <div class="wrap">
+    <div class="dash" role="list" aria-label={t.statsLabel}>
+      {t.stats.map((s) => (
+        <div class="dash-cell" role="listitem">
+          <span class="dash-num">{s.num}</span>
+          <span class="dash-label">{s.label}</span>
+        </div>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
   .hero { padding-top: clamp(3rem, 7vw, 5.5rem); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+    margin-bottom: clamp(3rem, 7vw, 5rem);
+  }
   .hero-title {
     font-size: var(--step-4);
-    max-width: 15ch;
-    margin-bottom: 1.6rem;
+    margin-bottom: 1.4rem;
     overflow-wrap: break-word;
+  }
+  .hero-photo {
+    width: clamp(180px, 24vw, 320px);
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 3px;
+    border: 1px solid var(--line);
+  }
+  .hero-thesis {
+    font-family: var(--display);
+    font-size: var(--step-2);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-photo { order: -1; width: 140px; }
   }
   .hl {
     color: var(--accent);
@@ -57,13 +73,11 @@
     color: var(--ink-soft);
     margin-bottom: 1.6rem;
   }
-  .offer { margin-bottom: 2.2rem; }
   .hero-actions {
     display: flex;
     align-items: center;
     gap: 1.5rem;
     flex-wrap: wrap;
-    margin-bottom: clamp(3rem, 7vw, 5rem);
   }
   .hero-link {
     font-weight: 600;

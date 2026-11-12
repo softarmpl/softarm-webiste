@@ -1,20 +1,65 @@
 ---
 import "../styles/global.css";
 import Analytics from "../components/Analytics.astro";
-const { title = "MVP w 5 tygodni - stała cena, gwarancja terminu", description = "Buduję MVP od pomysłu do działającego produktu. 16 lat doświadczenia w fintech, cybersecurity i lotnictwie. Stała cena, stały termin." } = Astro.props;
+import { dicts, SITE, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  title?: string;
+  description?: string;
+  /** Ścieżki tej samej strony w obu językach, np. { pl: "/", en: "/en/" } */
+  alternates?: Partial<Record<Lang, string>>;
+  type?: "website" | "article";
+}
+
+const { lang, alternates = {}, type = "website" } = Astro.props;
+const t = dicts[lang];
+const title = Astro.props.title ?? t.meta.title;
+const description = Astro.props.description ?? t.meta.description;
+const site = Astro.site!;
+const canonical = new URL(Astro.url.pathname, site).href;
+const ogImage = new URL("/kamil.jpg", site).href;
+
+const person = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Kamil Wałdoch",
+  jobTitle: t.meta.jobTitle,
+  url: new URL(lang === "pl" ? "/" : "/en/", site).href,
+  image: ogImage,
+  email: `mailto:${SITE.email}`,
+  address: { "@type": "PostalAddress", addressLocality: "Gdynia", addressCountry: "PL" },
+  worksFor: { "@type": "Organization", name: "SoftArm", url: site.href },
+  sameAs: [SITE.linkedin],
+};
 ---
 <!doctype html>
-<html lang="pl">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <Analytics />
+    <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {Object.entries(alternates).map(([l, path]) => (
+      <link rel="alternate" hreflang={l} href={new URL(path!, site).href} />
+    ))}
+    {alternates.pl && <link rel="alternate" hreflang="x-default" href={new URL(alternates.pl, site).href} />}
+
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={lang === "pl" ? "pl_PL" : "en_US"} />
+    <meta name="twitter:card" content="summary" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(person)} />
   </head>
   <body>
     <slot />

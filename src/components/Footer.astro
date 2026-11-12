@@ -1,0 +1,28 @@
+---
+import { SITE } from "../i18n";
+---
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>© {new Date().getFullYear()} Kamil Wałdoch · SoftArm</span>
+    <div class="foot-links">
+      <a href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={`mailto:${SITE.email}`}>E-mail</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot { padding-block: 2rem; }
+  .foot-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .foot-links { display: flex; gap: 1.5rem; }
+  .foot-links a { text-decoration: none; }
+  .foot-links a:hover { color: var(--accent); }
+</style>

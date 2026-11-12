@@ -1,19 +1,32 @@
 ---
+import { dicts, homePath, otherLang, type Lang } from "../i18n";
+
+interface Props {
+  lang: Lang;
+  /** Adres tej samej strony w drugim języku */
+  switchHref?: string;
+}
+const { lang } = Astro.props;
+const t = dicts[lang].nav;
+const home = homePath(lang);
+const switchHref = Astro.props.switchHref ?? homePath(otherLang(lang));
 ---
 <header class="nav">
   <div class="wrap nav-inner">
-    <a href="#top" class="nav-logo">Kamil Wałdoch</a>
+    <a href={home} class="nav-logo">Kamil Wałdoch</a>
     <div class="nav-right">
       <nav class="nav-links" id="nav-menu">
-        <a href="#jak">Jak to działa</a>
-        <a href="#efekty">Efekty</a>
-        <a href="#dlaczego-warto">Dlaczego warto</a>
+        <a href={`${home}#about`}>{t.about}</a>
+        <a href={`${home}#work`}>{t.work}</a>
+        <a href={`${home}#writing`}>{t.writing}</a>
+        <a href={`${home}#services`}>{t.services}</a>
       </nav>
-      <a href="#kontakt" class="nav-cta">Umów rozmowę</a>
+      <a href={switchHref} class="nav-lang" hreflang={otherLang(lang)} title={t.switchTitle}>{t.switchLabel}</a>
+      <a href={`${home}#contact`} class="nav-cta">{t.contact}</a>
       <button
         class="nav-toggle"
         type="button"
-        aria-label="Otwórz menu"
+        aria-label={t.menuLabel}
         aria-expanded="false"
         aria-controls="nav-menu"
       >
@@ -64,6 +77,15 @@
     transition: color 0.15s ease;
   }
   .nav-links a:hover { color: var(--ink); }
+  .nav-lang {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+  }
+  .nav-lang:hover { color: var(--accent); }
   .nav-cta {
     text-decoration: none;
     font-size: var(--step--1);

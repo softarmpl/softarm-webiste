@@ -1,0 +1,53 @@
+---
+import { dicts, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const t = dicts[Astro.props.lang].experience;
+---
+<section id="experience" class="exp">
+  <div class="wrap">
+    <p class="eyebrow">{t.eyebrow}</p>
+    <h2 class="exp-title">{t.title}</h2>
+    <ol class="exp-list">
+      {t.items.map((i) => (
+        <li class="exp-item">
+          <span class="exp-period">{i.period}</span>
+          <div>
+            <h3 class="exp-org">{i.org} <span class="exp-role">· {i.role}</span></h3>
+            <p class="exp-body">{i.body}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+    <p class="exp-cred">{t.credentials.join(" · ")}</p>
+  </div>
+</section>
+
+<style>
+  .exp-title { font-size: var(--step-3); margin-bottom: clamp(2rem, 5vw, 3rem); }
+  .exp-list { list-style: none; border-top: 1px solid var(--ink); max-width: 900px; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.5rem;
+    padding-block: 1.6rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .exp-period {
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    color: var(--accent);
+    padding-top: 0.3rem;
+  }
+  .exp-org { font-size: var(--step-1); margin-bottom: 0.5rem; }
+  .exp-role { font-family: var(--body); font-size: var(--step-0); font-weight: 400; color: var(--ink-soft); letter-spacing: 0; }
+  .exp-body { color: var(--ink-soft); max-width: 62ch; }
+  .exp-cred {
+    margin-top: 1.6rem;
+    font-family: var(--mono);
+    font-size: var(--step--1);
+    color: var(--ink-soft);
+  }
+  @media (max-width: 640px) {
+    .exp-item { grid-template-columns: 1fr; gap: 0.4rem; }
+  }
+</style>

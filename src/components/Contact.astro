@@ -1,126 +1,52 @@
 ---
-const faqs = [
-  {
-    q: "Ile kosztuje MVP?",
-    a: "Typowy projekt zaczyna się od 35 000 zł netto. Dokładną cenę znasz przed startem i ona się nie zmienia.",
-  },
-  {
-    q: "Jak działa gwarancja terminu w praktyce?",
-    a: "Datę oddania ustalamy na piśmie przed startem. Jeśli nie dowiozę na czas z mojej winy, pracuję dalej bez dodatkowych kosztów — aż produkt będzie gotowy.",
-  },
-  {
-    q: "Mój pomysł jest większy niż 5 tygodni — co wtedy?",
-    a: "Na rozmowie tniemy zakres do najważniejszego MVP, które da się dowieźć w 5 tygodni, a resztę planujemy na kolejne etapy. Dostajesz działający produkt szybko, nie obietnicę za pół roku.",
-  },
-  {
-    q: "Co jeśli w trakcie zmienię zdanie?",
-    a: "Dwie rundy poprawek są w cenie. Większe zmiany zakresu wyceniam osobno - zawsze przed wykonaniem.",
-  },
-  {
-    q: "Co dostaję na koniec?",
-    a: "Działający produkt na Twojej infrastrukturze, pełny kod i dokumentację. Wszystko jest Twoje.",
-  },
-  {
-    q: "Czy po zakończeniu zostaję sam?",
-    a: "Nie. Oferuję opiekę techniczną w abonamencie albo przekazanie projektu Twojemu przyszłemu zespołowi.",
-  },
-];
+import { dicts, SITE, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const t = dicts[Astro.props.lang].contact;
 ---
-<section id="faq" class="faq">
-  <div class="wrap">
-    <p class="eyebrow">Częste pytania</p>
-    <h2 class="faq-title">Zanim zapytasz.</h2>
-    <div class="faq-list">
-      {faqs.map((f) => (
-        <details class="faq-item">
-          <summary class="faq-q">{f.q}</summary>
-          <p class="faq-a">{f.a}</p>
-        </details>
-      ))}
-    </div>
-  </div>
-</section>
-
-<section id="kontakt" class="cta">
+<section id="contact" class="cta">
   <div class="wrap cta-inner">
-    <h2 class="cta-title">
-      Masz pomysł? Sprawdźmy w 30 minut,<br />
-      czy da się go zbudować w 5 tygodni.
-    </h2>
-    <p class="offer cta-offer">
-      <strong>Od 35 000&nbsp;zł netto</strong> · stała cena. Nie zdążę na
-      termin — <strong>dokańczam za&nbsp;darmo.</strong>
-    </p>
+    <h2 class="cta-title">{t.title}</h2>
+    <p class="cta-lead">{t.lead}</p>
     <div class="cta-actions">
-      <a href="https://calendly.com/kamil-softarm/30min" class="btn btn-primary">Umów bezpłatną rozmowę →</a>
+      <a href={`mailto:${SITE.email}`} class="btn btn-primary">{SITE.email}</a>
+      <a href={SITE.linkedin} class="cta-mail" target="_blank" rel="noopener">LinkedIn</a>
     </div>
 
-    <p class="cta-or">albo opowiedz, nad czym pracujesz - odpiszę w ciągu doby</p>
+    <p class="cta-or">{t.or}</p>
 
     <form
       class="cta-form"
       action="https://api.web3forms.com/submit"
       method="POST"
+      data-sending={t.form.sending}
+      data-error={t.form.error}
     >
       <input type="hidden" name="access_key" value="648bd1f4-c027-43d2-a56f-1301e439d1f7" />
-      <input type="hidden" name="subject" value="Nowe zgłoszenie ze strony SoftArm" />
+      <input type="hidden" name="subject" value={t.form.subject} />
       <input type="hidden" name="from_name" value="softarm.pl" />
       <input type="checkbox" name="botcheck" class="cta-hp" tabindex="-1" autocomplete="off" />
 
       <div class="cta-row">
-        <input type="text" name="name" placeholder="Imię" required autocomplete="name" />
-        <input type="email" name="email" placeholder="Twój e-mail" required autocomplete="email" />
+        <input type="text" name="name" placeholder={t.form.name} aria-label={t.form.name} required autocomplete="name" />
+        <input type="email" name="email" placeholder={t.form.email} aria-label={t.form.email} required autocomplete="email" />
       </div>
-      <textarea name="message" rows="6" placeholder="Nad czym pracujesz? Co chcesz zbudować? Opisz śmiało - im więcej wiem, tym konkretniej odpowiem." required></textarea>
-      <button type="submit" class="btn btn-primary cta-submit">Wyślij →</button>
+      <textarea name="message" rows="5" placeholder={t.form.message} aria-label={t.form.message} required></textarea>
+      <button type="submit" class="btn btn-primary cta-submit">{t.form.submit}</button>
       <p class="cta-status" role="status" aria-live="polite"></p>
       <div class="cta-success" role="status" aria-live="polite">
         <span class="cta-success-mark" aria-hidden="true">✓</span>
-        <p class="cta-success-title">Dzięki! Wiadomość wysłana.</p>
-        <p class="cta-success-sub">Odezwę się w ciągu doby na podany e-mail.</p>
+        <p class="cta-success-title">{t.form.successTitle}</p>
+        <p class="cta-success-sub">{t.form.successSub}</p>
       </div>
     </form>
   </div>
 </section>
 
-<footer class="foot">
-  <div class="wrap foot-inner">
-    <span>© {new Date().getFullYear()} Kamil Wałdoch · SoftArm</span>
-    <div class="foot-links">
-      <a href="https://linkedin.com/in/kamil-waldoch" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:kamil@softarm.pl">E-mail</a>
-    </div>
-  </div>
-</footer>
-
 <style>
-  .faq-title { font-size: var(--step-3); margin-bottom: clamp(2rem, 5vw, 3rem); }
-  .faq-list { border-top: 1px solid var(--line); max-width: 760px; }
-  .faq-item { border-bottom: 1px solid var(--line); }
-  .faq-q {
-    font-family: var(--display);
-    font-size: var(--step-1);
-    font-weight: 500;
-    padding-block: 1.3rem;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .faq-q::after { content: "+"; color: var(--accent); font-family: var(--mono); }
-  .faq-item[open] .faq-q::after { content: "−"; }
-  .faq-q::-webkit-details-marker { display: none; }
-  .faq-a {
-    color: var(--ink-soft);
-    padding-bottom: 1.3rem;
-    max-width: 60ch;
-  }
-
   .cta { background: var(--accent-wash); border-block: 1px solid var(--line); }
   .cta-inner { text-align: center; }
   .cta-title { font-size: var(--step-3); margin-bottom: 1.5rem; }
-  .cta-offer { margin-bottom: 2rem; }
+  .cta-lead { color: var(--ink-soft); margin-bottom: 2rem; }
   .cta-actions {
     display: flex;
     align-items: center;
@@ -225,19 +151,6 @@ const faqs = [
     .cta-row { flex-direction: column; }
   }
 
-  .foot { padding-block: 2rem; }
-  .foot-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: var(--step--1);
-    color: var(--ink-soft);
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .foot-links { display: flex; gap: 1.5rem; }
-  .foot-links a { text-decoration: none; }
-  .foot-links a:hover { color: var(--accent); }
 </style>
 
 <script>
@@ -251,7 +164,7 @@ const faqs = [
     if (form.classList.contains("sent")) return; // już wysłane - blokuj dubel
 
     status.className = "cta-status";
-    status.textContent = "Wysyłam…";
+    status.textContent = form.dataset.sending ?? "…";
     submit.disabled = true;
 
     try {
@@ -269,8 +182,7 @@ const faqs = [
       }
     } catch {
       status.className = "cta-status err";
-      status.textContent =
-        "Nie udało się wysłać. Napisz proszę na kamil@softarm.pl.";
+      status.textContent = form.dataset.error ?? "Error";
       submit.disabled = false; // pozwól spróbować ponownie tylko po błędzie
     }
   });
