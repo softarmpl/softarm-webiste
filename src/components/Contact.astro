@@ -1,110 +1,122 @@
 ---
+import Dotted from "./Dotted.astro";
 import { dicts, SITE, type Lang } from "../i18n";
 interface Props { lang: Lang }
-const t = dicts[Astro.props.lang].contact;
+const d = dicts[Astro.props.lang];
+const t = d.contact;
 ---
 <section id="contact" class="cta">
-  <div class="wrap cta-inner">
-    <h2 class="cta-title">{t.title}</h2>
-    <p class="cta-lead">{t.lead}</p>
-    <div class="cta-actions">
-      <a href={`mailto:${SITE.email}`} class="btn btn-primary">{SITE.email}</a>
-      <a href={SITE.linkedin} class="cta-mail" target="_blank" rel="noopener">LinkedIn</a>
+  <div class="wrap">
+    <header class="cta-head">
+      <p class="eyebrow">{d.nav.contact}</p>
+      <h2 class="cta-title"><Dotted text={t.title} /></h2>
+    </header>
+    <div class="cta-block">
+      <div class="cta-direct">
+        <p class="cta-lead">{t.lead}</p>
+        <!-- Dane kontaktowe jako spokojne wiersze, nie przyciski: jedynym CTA sekcji jest "Wyślij" -->
+        <dl class="cta-info">
+          <div>
+            <dt class="label">{t.form.email}</dt>
+            <dd><a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a></dd>
+          </div>
+          <div>
+            <dt class="label">LinkedIn</dt>
+            <dd><a class="link" href={SITE.linkedin} target="_blank" rel="noopener">{SITE.linkedin.replace(/^https?:\/\/(www\.)?/, "")} ↗</a></dd>
+          </div>
+        </dl>
+      </div>
+
+      <form
+        class="cta-form"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        data-sending={t.form.sending}
+        data-error={t.form.error}
+      >
+        <p class="cta-or">{t.or}</p>
+        <input type="hidden" name="access_key" value="648bd1f4-c027-43d2-a56f-1301e439d1f7" />
+        <input type="hidden" name="subject" value={t.form.subject} />
+        <input type="hidden" name="from_name" value="softarm.pl" />
+        <input type="checkbox" name="botcheck" class="cta-hp" tabindex="-1" autocomplete="off" />
+
+        <div class="cta-row">
+          <label class="cta-field">
+            <span class="cta-label">{t.form.name}</span>
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label class="cta-field">
+            <span class="cta-label">{t.form.email}</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+        </div>
+        <label class="cta-field cta-msg">
+          <span class="cta-label">{t.form.message}</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="btn btn-signal cta-submit">{t.form.submit}</button>
+        <p class="cta-status" role="status" aria-live="polite"></p>
+        <div class="cta-success" role="status" aria-live="polite">
+          <span class="cta-success-mark" aria-hidden="true">✓</span>
+          <p class="cta-success-title">{t.form.successTitle}</p>
+          <p class="cta-success-sub">{t.form.successSub}</p>
+        </div>
+      </form>
     </div>
-
-    <p class="cta-or">{t.or}</p>
-
-    <form
-      class="cta-form"
-      action="https://api.web3forms.com/submit"
-      method="POST"
-      data-sending={t.form.sending}
-      data-error={t.form.error}
-    >
-      <input type="hidden" name="access_key" value="648bd1f4-c027-43d2-a56f-1301e439d1f7" />
-      <input type="hidden" name="subject" value={t.form.subject} />
-      <input type="hidden" name="from_name" value="softarm.pl" />
-      <input type="checkbox" name="botcheck" class="cta-hp" tabindex="-1" autocomplete="off" />
-
-      <div class="cta-row">
-        <input type="text" name="name" placeholder={t.form.name} aria-label={t.form.name} required autocomplete="name" />
-        <input type="email" name="email" placeholder={t.form.email} aria-label={t.form.email} required autocomplete="email" />
-      </div>
-      <textarea name="message" rows="5" placeholder={t.form.message} aria-label={t.form.message} required></textarea>
-      <button type="submit" class="btn btn-primary cta-submit">{t.form.submit}</button>
-      <p class="cta-status" role="status" aria-live="polite"></p>
-      <div class="cta-success" role="status" aria-live="polite">
-        <span class="cta-success-mark" aria-hidden="true">✓</span>
-        <p class="cta-success-title">{t.form.successTitle}</p>
-        <p class="cta-success-sub">{t.form.successSub}</p>
-      </div>
-    </form>
   </div>
 </section>
 
 <style>
-  .cta { background: var(--accent-wash); border-block: 1px solid var(--line); }
-  .cta-inner { text-align: center; }
-  .cta-title { font-size: var(--step-3); margin-bottom: 1.5rem; }
-  .cta-lead { color: var(--ink-soft); margin-bottom: 2rem; }
-  .cta-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
+  .cta-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(var(--space-5), 7vw, var(--space-7));
+    align-items: start;
   }
-  .cta-mail {
-    font-family: var(--mono);
-    font-size: var(--step-0);
-    text-decoration: none;
-    border-bottom: 2px solid var(--line);
-    padding-bottom: 2px;
+  .cta-head { margin-bottom: var(--space-6); }
+  /* Nagłówek na całą szerokość; na wąskim ekranie skalowany do szerokości,
+     bo "Porozmawiajmy" to jedno długie słowo */
+  .cta-title { font-size: min(var(--fs-display-xl), 11.5vw); line-height: 0.92; letter-spacing: -0.045em; }
+  .cta-lead { font-size: var(--fs-lead); line-height: 1.45; max-width: 36ch; margin-bottom: var(--space-5); }
+  .cta-info { border-top: 1px solid var(--line-strong); }
+  .cta-info > div {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: var(--space-3);
+    align-items: baseline;
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--line);
   }
-  .cta-mail:hover { border-color: var(--accent); }
+  .cta-info dd { overflow-wrap: anywhere; }
+  .cta-info .link { font-weight: 400; }
 
-  .cta-or {
-    margin-top: clamp(3rem, 6vw, 4.5rem);
-    margin-bottom: 1.6rem;
-    font-size: var(--step--1);
-    color: var(--ink-soft);
-  }
   .cta-form {
-    max-width: 560px;
-    margin-inline: auto;
-    text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-    background: var(--paper-pure);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: clamp(1.6rem, 4vw, 2.6rem);
+    gap: var(--space-4);
   }
-  .cta-row {
-    display: flex;
-    gap: 1.1rem;
-  }
+  .cta-or { font-size: var(--fs-lead); line-height: 1.45; color: var(--ink-muted); }
+  .cta-row { display: flex; gap: var(--space-4); }
+  .cta-field { display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
+  .cta-label { font-family: var(--font-display); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); }
   .cta-form input[type="text"],
   .cta-form input[type="email"],
   .cta-form textarea {
     width: 100%;
-    font-family: var(--body);
-    font-size: var(--step-0);
+    font-family: var(--font-text);
+    font-size: var(--fs-body);
+    font-weight: 400;
     color: var(--ink);
-    background: var(--paper-pure);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 0.85rem 1rem;
+    background: var(--ground-raised);
+    border: 1px solid var(--control);
+    border-radius: var(--radius-0);
+    padding: 0.9rem 1rem;
     transition: border-color 0.15s ease;
   }
-  .cta-form input:focus,
-  .cta-form textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-  .cta-form textarea { resize: vertical; min-height: 150px; }
-  .cta-submit { align-self: center; margin-top: 0.4rem; }
+  .cta-form input:hover,
+  .cta-form textarea:hover { border-color: var(--ink); }
+  .cta-form textarea { resize: vertical; min-height: 160px; }
+  .cta-submit { align-self: flex-start; }
   /* honeypot - ukryty przed ludźmi, widoczny dla botów */
   .cta-hp {
     position: absolute;
@@ -113,44 +125,39 @@ const t = dicts[Astro.props.lang].contact;
     height: 1px;
     opacity: 0;
   }
-  .cta-status {
-    font-size: var(--step--1);
-    color: var(--ink-soft);
-    min-height: 1.2em;
-  }
-  .cta-status.ok { color: var(--accent); }
-  .cta-status.err { color: #b23b3b; }
+  .cta-status { font-size: var(--fs-small); color: var(--ink-muted); min-height: 1.2em; }
+  .cta-status.ok { color: var(--ink); }
+  .cta-status.err { color: var(--error); }
 
   /* Stan po wysłaniu - chowamy pola, pokazujemy potwierdzenie */
-  .cta-success { display: none; text-align: center; padding: 1.5rem 0; }
+  .cta-success { display: none; padding: var(--space-5) 0; }
   .cta-form.sent .cta-row,
-  .cta-form.sent textarea,
+  .cta-form.sent .cta-msg,
+  .cta-form.sent .cta-or,
   .cta-form.sent .cta-submit,
   .cta-form.sent .cta-status { display: none; }
   .cta-form.sent .cta-success { display: block; }
   .cta-success-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: #fff;
+    display: inline-grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: var(--radius-pill);
+    background: var(--signal);
+    color: var(--on-signal);
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-4);
   }
-  .cta-success-title {
-    font-family: var(--display);
-    font-size: var(--step-1);
-    color: var(--ink);
-    margin-bottom: 0.4rem;
+  .cta-success-title { font-family: var(--font-display); font-size: var(--fs-heading); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: var(--space-2); }
+  .cta-success-sub { color: var(--ink-muted); }
+  @media (max-width: 860px) {
+    .cta-block { grid-template-columns: 1fr; }
   }
-  .cta-success-sub { font-size: var(--step-0); color: var(--ink-soft); }
   @media (max-width: 520px) {
     .cta-row { flex-direction: column; }
+    .cta-info > div { grid-template-columns: 1fr; gap: var(--space-1); }
   }
-
 </style>
 
 <script>

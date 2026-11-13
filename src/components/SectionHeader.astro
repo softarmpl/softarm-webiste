@@ -1,0 +1,25 @@
+---
+import Dotted from "./Dotted.astro";
+// Nagłówek sekcji: etykieta, duży tytuł z kropką, opcjonalny lead w slocie.
+// Jeśli podano `highlight`, ta końcówka tytułu dostaje kolor akcentu.
+interface Props { eyebrow: string; title: string; highlight?: string; center?: boolean }
+const { eyebrow, title, highlight, center } = Astro.props;
+const split = highlight && title.endsWith(highlight) ? title.slice(0, -highlight.length) : null;
+---
+<header class:list={["sh", { "sh-center": center }]}>
+  <p class="eyebrow">{eyebrow}</p>
+  <h2 class="sh-title">
+    {split !== null
+      ? <>{split}<span class="hl"><Dotted text={highlight!} /></span></>
+      : <Dotted text={title} />}
+  </h2>
+  {Astro.slots.has("default") && <div class="sh-lead"><slot /></div>}
+</header>
+
+<style>
+  .sh { max-width: 60rem; margin-bottom: var(--space-6); }
+  .sh-center { margin-inline: auto; text-align: center; }
+  .sh-title { font-size: var(--fs-display-l); text-wrap: balance; }
+  .sh-lead { font-size: var(--fs-lead); line-height: 1.45; color: var(--ink-muted); margin-top: var(--space-4); max-width: 48ch; }
+  .sh-center .sh-lead { margin-inline: auto; }
+</style>

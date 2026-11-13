@@ -20,13 +20,13 @@ const fmt = new Intl.DateTimeFormat(lang === "pl" ? "pl-PL" : "en-GB", { day: "n
   <Nav lang={lang} switchHref={otherHref} />
   <main>
     <article class="post wrap">
-      <a class="post-back" href={`${homePath(lang)}#writing`}>{t.back}</a>
+      <a class="post-back chip" href={`${homePath(lang)}#writing`}>{t.back}</a>
       <p class="eyebrow"><time datetime={date.toISOString().slice(0, 10)}>{fmt.format(date)}</time></p>
       <h1 class="post-title">{title}</h1>
       <p class="post-lead">{lead}</p>
       <div class="post-body"><Content /></div>
       <p class="post-foot">
-        {translation && <a href={otherHref} hreflang={other}>{t.otherLang} →</a>}
+        {translation && <a class="link" href={otherHref} hreflang={other}>{t.otherLang} →</a>}
       </p>
     </article>
   </main>
@@ -34,21 +34,19 @@ const fmt = new Intl.DateTimeFormat(lang === "pl" ? "pl-PL" : "en-GB", { day: "n
 </Base>
 
 <style>
-  .post { max-width: calc(68ch + 2 * var(--gutter)); padding-block: clamp(3rem, 7vw, 5rem); }
-  .post-back {
-    display: block;
-    width: fit-content;
-    font-size: var(--step--1);
-    color: var(--ink-soft);
-    text-decoration: none;
-    margin-bottom: 2rem;
-  }
-  .post-back:hover { color: var(--accent); }
-  .post-title { font-size: var(--step-3); margin-bottom: 1rem; }
-  .post-lead { font-size: var(--step-1); color: var(--ink-soft); line-height: 1.45; margin-bottom: 2.5rem; }
-  .post-body :global(p) { margin-bottom: 1.2rem; }
-  .post-body :global(ul) { margin: 0 0 1.2rem 1.2rem; }
-  .post-body :global(li) { margin-bottom: 0.3rem; }
-  .post-foot { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
-  .post-foot a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  .post { max-width: calc(68ch + 2 * var(--gutter)); padding-block: var(--space-6) var(--section-pad); }
+  .post-back { display: inline-flex; padding: 0.55rem 0.95rem; text-decoration: none; margin-bottom: var(--space-6); transition: background 0.15s ease, color 0.15s ease; }
+  .post-back:hover { background: var(--ink); color: var(--ground); }
+  .post-title { font-size: var(--fs-display-l); margin-bottom: var(--space-4); text-wrap: balance; }
+  .post-lead { font-size: var(--fs-lead); color: var(--ink-muted); line-height: 1.45; margin-bottom: var(--space-5); padding-bottom: var(--space-5); border-bottom: 1px solid var(--line); }
+  .post-body :global(p) { margin-bottom: 1.25rem; }
+  .post-body :global(h2) { font-size: var(--fs-heading); margin: var(--space-5) 0 var(--space-3); }
+  .post-body :global(h3) { font-size: 1.25rem; margin: var(--space-4) 0 var(--space-2); }
+  .post-body :global(ul), .post-body :global(ol) { margin: 0 0 1.25rem 1.2rem; }
+  .post-body :global(li) { margin-bottom: 0.35rem; }
+  .post-body :global(li::marker) { color: var(--signal-ink); }
+  .post-body :global(strong) { font-weight: 500; }
+  .post-body :global(a) { font-weight: 500; text-decoration-color: var(--signal-ink); text-decoration-thickness: 1.5px; text-underline-offset: 0.25em; }
+  .post-body :global(blockquote) { font-size: var(--fs-lead); font-weight: 300; padding-left: var(--space-4); border-left: 1px solid var(--line-strong); margin: var(--space-5) 0; }
+  .post-foot { margin-top: var(--space-6); }
 </style>

@@ -1,0 +1,13 @@
+---
+// Tekst nagłówka zakończony kropką w kolorze akcentu.
+// Ostatnie słowo i kropka są sklejone, żeby kropka nie spadała do nowej linii.
+// Tytuły kończące się na ? lub ! zostają bez kropki.
+interface Props { text: string }
+const { text } = Astro.props;
+const bare = text.replace(/\.$/, "");
+const keepPunct = /[?!]$/.test(bare);
+const i = bare.lastIndexOf(" ");
+const head = i >= 0 ? bare.slice(0, i + 1) : "";
+const last = i >= 0 ? bare.slice(i + 1) : bare;
+---
+{keepPunct ? bare : <>{head}<span class="nobr">{last}<span class="dot" aria-hidden="true"></span></span></>}
