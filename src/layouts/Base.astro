@@ -27,7 +27,6 @@ const person = {
   jobTitle: t.meta.jobTitle,
   url: new URL(lang === "pl" ? "/" : "/en/", site).href,
   image: ogImage,
-  email: `mailto:${SITE.email}`,
   address: { "@type": "PostalAddress", addressLocality: "Gdynia", addressCountry: "PL" },
   worksFor: { "@type": "Organization", name: "SoftArm", url: site.href },
   sameAs: [SITE.linkedin],

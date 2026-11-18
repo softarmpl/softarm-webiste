@@ -16,10 +16,11 @@ const t = d.contact;
         <p class="cta-lead">{t.lead}</p>
         <!-- Główna droga to formularz ("Wyślij"). Mail jako spokojny wiersz dla tych, którzy wolą własną skrzynkę.
              LinkedIn tylko w stopce, żeby nie konkurował z formularzem. -->
-        <dl class="cta-info">
+        <!-- Adres składany w przeglądarce (ochrona przed botami). Bez JS wiersz zostaje ukryty, jest formularz. -->
+        <dl class="cta-info" hidden>
           <div>
             <dt class="label">{t.form.email}</dt>
-            <dd><a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a></dd>
+            <dd><a class="link cta-mail" data-u={SITE.emailParts[0]} data-d={SITE.emailParts[1]}></a></dd>
           </div>
         </dl>
       </div>
@@ -155,6 +156,14 @@ const t = d.contact;
 </style>
 
 <script>
+  const mail = document.querySelector<HTMLAnchorElement>(".cta-mail");
+  const addr = mail ? `${mail.dataset.u}@${mail.dataset.d}` : "";
+  if (mail) {
+    mail.href = `mailto:${addr}`;
+    mail.textContent = addr;
+    mail.closest("dl")?.removeAttribute("hidden");
+  }
+
   const form = document.querySelector<HTMLFormElement>(".cta-form");
   const status = form?.querySelector<HTMLParagraphElement>(".cta-status");
   const submit = form?.querySelector<HTMLButtonElement>(".cta-submit");
@@ -183,7 +192,7 @@ const t = d.contact;
       }
     } catch {
       status.className = "cta-status err";
-      status.textContent = form.dataset.error ?? "Error";
+      status.textContent = (form.dataset.error ?? "Error").replace("{email}", addr);
       submit.disabled = false; // pozwól spróbować ponownie tylko po błędzie
     }
   });
