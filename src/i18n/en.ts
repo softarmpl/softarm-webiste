@@ -29,8 +29,8 @@ export const en: Dict = {
     ctaSecondary: "See the work",
     stats: [
       { n: "16 years", l: "in software" },
-      { n: "~20 products", l: "shipped since 2010" },
-      { n: "2 teams", l: "led in parallel" },
+      { n: "20+ products", l: "in production, not in a drawer" },
+      { n: "7 countries", l: "clients across Europe, the US and the Middle East" },
     ],
   },
   about: {
@@ -64,16 +64,6 @@ export const en: Dict = {
         stack: [],
       },
       {
-        tag: "Fintech · Saudi Arabia",
-        title: "An LLM product cleared to sell to more customers",
-        metric: "",
-        metricLabel: "Wealth-management platform · audit in about six months",
-        problem: "A new LLM-based product built from scratch. To sell it to more customers, it had to pass a security audit.",
-        did: "Architecture and delivery of the LLM features: large-document processing, chat over documents, deal analysis, token cost control. Then the engineering side of SOC 2 Type II, working directly with the auditor.",
-        result: "In production since December 2025. SOC 2 Type II report in about six months, needed to sell to more customers. Token costs under control from day one.",
-        stack: ["LangGraph", "Arize Phoenix", "OCR", "AWS"],
-      },
-      {
         tag: "Cybersecurity",
         title: "Zero breaches, cloud costs down by about half",
         metric: "",
@@ -82,6 +72,16 @@ export const en: Dict = {
         did: "Architecture on AWS, monitoring, login migration to OIDC, slimming down the infrastructure.",
         result: "No successful breach over the system's whole life. Cloud costs down by about half.",
         stack: ["AWS", "Keycloak (OIDC)", "Loki", "Grafana"],
+      },
+      {
+        tag: "Fintech · Saudi Arabia",
+        title: "An LLM product cleared to sell to more customers",
+        metric: "",
+        metricLabel: "Wealth-management platform · audit in about six months",
+        problem: "A new LLM-based product built from scratch. To sell it to more customers, it had to pass a security audit.",
+        did: "Architecture and delivery of the LLM features: large-document processing, chat over documents, deal analysis, token cost control. Then the engineering side of SOC 2 Type II, working directly with the auditor.",
+        result: "In production since December 2025. SOC 2 Type II report in about six months, needed to sell to more customers. Token costs under control from day one.",
+        stack: ["LangGraph", "Google Gemini", "OCR", "AWS"],
       },
       {
         tag: "Aviation",
@@ -138,13 +138,13 @@ export const en: Dict = {
   services: {
     eyebrow: "Working with me",
     title: "Before you spend more on launch",
-    lead: "I also work directly with companies, through SoftArm. I don't grade whether the code is “well written”. I answer three questions: can you launch it, what are the risks, and what will it cost to run.",
+    lead: "I'll answer three questions: is the app ready for production, what are the risks, and what will it cost to run.",
     items: [
       { title: "You have a working prototype and want to launch it.", body: "Built with AI tools too. I review the code, architecture, security and deployment. You get a list of blockers with priorities and cost estimates, written for the owner, not for a developer." },
       { title: "Your product is about to reach customers or an audit.", body: "I tell you what may break, what puts sales at risk and what to fix first." },
       { title: "Your project needs a technical lead.", body: "I set the architecture and standards and lead the team, including when AI writes much of the code. I make sure running costs are known before the system grows." },
     ],
-    cta: "Tell me what you want to launch",
+    cta: "Get in touch",
   },
   testimonial: {
     eyebrow: "Recommendation",
@@ -154,8 +154,7 @@ export const en: Dict = {
   },
   contact: {
     title: "Let's talk",
-    lead: "Email or LinkedIn is fastest. I usually reply within a day.",
-    or: "or write here",
+    lead: "You don't need a finished brief. Two sentences about what you want to build or launch are enough.",
     form: {
       subject: "New message from softarm.pl",
       name: "Name",

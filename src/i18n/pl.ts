@@ -28,8 +28,8 @@ export const pl = {
     ctaSecondary: "Zobacz projekty",
     stats: [
       { n: "16 lat", l: "w branży" },
-      { n: "ok. 20 produktów", l: "wdrożonych od 2010" },
-      { n: "2 zespoły", l: "prowadzone równolegle" },
+      { n: "ponad 20 produktów", l: "na produkcji, nie w szufladzie" },
+      { n: "7 krajów", l: "klienci z Europy, USA i Bliskiego Wschodu" },
     ],
   },
   about: {
@@ -63,16 +63,6 @@ export const pl = {
         stack: [] as string[],
       },
       {
-        tag: "Fintech · Arabia Saudyjska",
-        title: "Produkt z LLM mógł trafić do kolejnych klientów",
-        metric: "",
-        metricLabel: "Platforma do zarządzania majątkiem · audyt w ok. pół roku",
-        problem: "Nowy produkt oparty na LLM, budowany od zera. Żeby sprzedawać go kolejnym klientom, musiał przejść audyt bezpieczeństwa.",
-        did: "Architektura i wdrożenie funkcji LLM: przetwarzanie dużych dokumentów, czat z dokumentami, analiza transakcji, kontrola kosztów tokenów. Potem SOC 2 Type II od strony technicznej, bezpośrednio z audytorem.",
-        result: "Na produkcji od grudnia 2025. Raport SOC 2 Type II w ok. pół roku, potrzebny do sprzedaży kolejnym klientom. Koszty tokenów pod kontrolą od początku.",
-        stack: ["LangGraph", "Arize Phoenix", "OCR", "AWS"],
-      },
-      {
         tag: "Cybersecurity",
         title: "Zero włamań, chmura tańsza o około połowę",
         metric: "",
@@ -81,6 +71,16 @@ export const pl = {
         did: "Architektura na AWS, monitoring, migracja logowania na OIDC, odchudzenie infrastruktury.",
         result: "Żadnego udanego włamania przez cały czas działania systemu. Koszt chmury niższy o ok. połowę.",
         stack: ["AWS", "Keycloak (OIDC)", "Loki", "Grafana"],
+      },
+      {
+        tag: "Fintech · Arabia Saudyjska",
+        title: "Produkt z LLM mógł trafić do kolejnych klientów",
+        metric: "",
+        metricLabel: "Platforma do zarządzania majątkiem · audyt w ok. pół roku",
+        problem: "Nowy produkt oparty na LLM, budowany od zera. Żeby sprzedawać go kolejnym klientom, musiał przejść audyt bezpieczeństwa.",
+        did: "Architektura i wdrożenie funkcji LLM: przetwarzanie dużych dokumentów, czat z dokumentami, analiza transakcji, kontrola kosztów tokenów. Potem SOC 2 Type II od strony technicznej, bezpośrednio z audytorem.",
+        result: "Na produkcji od grudnia 2025. Raport SOC 2 Type II w ok. pół roku, potrzebny do sprzedaży kolejnym klientom. Koszty tokenów pod kontrolą od początku.",
+        stack: ["LangGraph", "Google Gemini", "OCR", "AWS"],
       },
       {
         tag: "Lotnictwo",
@@ -137,13 +137,13 @@ export const pl = {
   services: {
     eyebrow: "Współpraca",
     title: "Zanim wydasz więcej na wdrożenie",
-    lead: "Z firmami pracuję też bezpośrednio, przez SoftArm. Nie oceniam, czy kod jest „dobrze napisany”. Odpowiadam na trzy pytania: czy możesz to uruchomić, co grozi i ile będzie kosztować utrzymanie.",
+    lead: "Odpowiem na trzy pytania: czy aplikacja nadaje się na produkcję, jakie są zagrożenia i ile będzie kosztować utrzymanie.",
     items: [
       { title: "Masz działający prototyp i chcesz go uruchomić.", body: "Także zbudowany z AI. Sprawdzam kod, architekturę, bezpieczeństwo i wdrożenie. Dostajesz listę blokerów z priorytetami i szacunkiem kosztów, pisaną dla właściciela, nie dla programisty." },
       { title: "Produkt zaraz trafi do klientów albo do audytu.", body: "Mówię, co może się wysypać, co zagraża sprzedaży i co poprawić najpierw." },
       { title: "Projekt potrzebuje prowadzenia technicznego.", body: "Ustawiam architekturę i standardy, prowadzę zespół, także gdy dużą część kodu pisze AI. Pilnuję, żeby koszt utrzymania był znany, zanim system urośnie." },
     ],
-    cta: "Opisz, co chcesz uruchomić",
+    cta: "Skontaktuj się",
   },
   testimonial: {
     eyebrow: "Rekomendacja",
@@ -153,8 +153,7 @@ export const pl = {
   },
   contact: {
     title: "Porozmawiajmy",
-    lead: "Najszybciej mailowo albo na LinkedInie. Zwykle odpisuję w ciągu doby.",
-    or: "albo napisz tutaj",
+    lead: "Nie musisz mieć gotowego briefu. Wystarczą dwa zdania o tym, co chcesz zbudować albo uruchomić.",
     form: {
       subject: "Nowa wiadomość ze strony softarm.pl",
       name: "Imię",
