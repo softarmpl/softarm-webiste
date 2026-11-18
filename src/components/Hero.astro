@@ -64,7 +64,14 @@ const [eyeName, eyeRole] = t.eyebrow.split(" · ");
   .hero-actions { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; margin-top: var(--space-5); }
 
   /* Portret w zwykłym prostokącie, bez zaokrągleń */
-  .hero-photo { margin: 0; }
+  .hero-photo {
+    margin: 0;
+    /* Dół portretu (koszula) płynnie znika w tle strony. Maska na figure, nie na img,
+       żeby zoom przy wejściu nie przesuwał zaniku. */
+    --fade: linear-gradient(to bottom, #000 55%, rgb(0 0 0 / 0.6) 72%, rgb(0 0 0 / 0.2) 88%, transparent 100%);
+    -webkit-mask-image: var(--fade);
+    mask-image: var(--fade);
+  }
   .hero-photo img {
     display: block;
     width: 100%;
@@ -116,7 +123,7 @@ const [eyeName, eyeRole] = t.eyebrow.split(" · ");
     .hero-grid { grid-template-columns: 64px minmax(0, 1fr); gap: 0 var(--space-3); align-items: center; }
     .hero-main { display: contents; }
     .hero-main > * { grid-column: 1 / -1; }
-    .hero-photo { grid-column: 1; grid-row: 1; width: 64px; }
+    .hero-photo { grid-column: 1; grid-row: 1; width: 64px; -webkit-mask-image: none; mask-image: none; }
     .hero-photo img { aspect-ratio: 1; }
     .hero-main > .eyebrow { grid-column: 2; grid-row: 1; margin: 0; line-height: 1.5; }
     .eyebrow span { display: block; }

@@ -6,7 +6,7 @@ export const pl = {
   meta: {
     title: "Kamil Wałdoch: Tech Lead i architekt oprogramowania",
     description:
-      "Pomagam właścicielom firm zdecydować, czy produkt jest gotowy do uruchomienia, co grozi i ile będzie kosztować utrzymanie. Tech Lead i architekt, 16 lat w projektach IT.",
+      "Pomagam właścicielom firm zdecydować, czy produkt jest gotowy do uruchomienia, gdzie są słabe punkty i ile będzie kosztować utrzymanie. Tech Lead i architekt, 16 lat w projektach IT.",
     jobTitle: "Tech Lead i architekt oprogramowania",
     knowsAbout: ["architektura oprogramowania", "prowadzenie zespołów IT", "audyt IT", "AI w projektach IT", "SOC 2"],
   },
@@ -23,7 +23,7 @@ export const pl = {
   hero: {
     eyebrow: "Kamil Wałdoch · Tech Lead i architekt oprogramowania",
     name: "Projekt IT bez niespodzianek",
-    lead: "Wiesz, czy możesz uruchomić produkt, co grozi i ile będzie kosztować utrzymanie. Projektuję architekturę i prowadzę zespół od pierwszej rozmowy do wdrożenia.",
+    lead: "Odpowiem ci, czy produkt jest gotowy do uruchomienia, gdzie są słabe punkty i ile będzie kosztować utrzymanie.",
     thesis: ["Pisanie kodu staniało.", "Decyzje nie."],
     ctaPrimary: "Porozmawiajmy",
     stats: [
