@@ -37,8 +37,8 @@ export const pl = {
     title: "Zaczynam przed pierwszą linijką kodu",
     photoAlt: "Kamil Wałdoch",
     paragraphs: [
-      "Wchodzę do projektu, zanim powstanie kod: rozmowy z klientem, warsztat albo wycena. Potem projektuję architekturę i prowadzę zespoły po 5–9 osób.",
-      "Pracowałem z założycielami i zarządami firm z Polski, USA, Norwegii i Arabii Saudyjskiej. Klienci wracali z kolejnymi projektami, a część przeszła za mną z poprzedniej firmy.",
+      "Wchodzę do projektu, zanim powstanie kod: rozmowy z klientem, warsztat albo wycena. Potem projektuję architekturę i prowadzę zespoły developerskie.",
+      "Pracowałem z założycielami i zarządami firm z Polski, USA, Norwegii i Arabii Saudyjskiej. Klienci wracali z kolejnymi projektami.",
     ],
     howTitle: "Czego możesz się spodziewać",
     how: [

@@ -38,8 +38,8 @@ export const en: Dict = {
     title: "I start before the first line of code",
     photoAlt: "Kamil Wałdoch",
     paragraphs: [
-      "I join a project before any code exists: client conversations, a workshop or an estimate. Then I design the architecture and lead teams of 5–9 people.",
-      "I've worked with founders and boards in Poland, the US, Norway and Saudi Arabia. Clients came back with new projects, and some followed me from my previous company.",
+      "I join a project before any code exists: client conversations, a workshop or an estimate. Then I design the architecture and lead development teams.",
+      "I've worked with founders and boards in Poland, the US, Norway and Saudi Arabia. Clients came back with new projects.",
     ],
     howTitle: "What you can expect",
     how: [
