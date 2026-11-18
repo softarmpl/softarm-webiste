@@ -160,7 +160,7 @@ export const pl = {
       message: "Wiadomość",
       submit: "Wyślij →",
       sending: "Wysyłam…",
-      error: "Nie udało się wysłać. Napisz proszę na kamil@softarm.pl.",
+      error: "Nie udało się wysłać. Napisz proszę na {email}.",
       successTitle: "Dzięki! Wiadomość wysłana.",
       successSub: "Odezwę się na podany e-mail.",
     },

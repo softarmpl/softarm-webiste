@@ -161,7 +161,7 @@ export const en: Dict = {
       message: "Message",
       submit: "Send →",
       sending: "Sending…",
-      error: "Couldn't send it. Please email kamil@softarm.pl.",
+      error: "Couldn't send it. Please email {email}.",
       successTitle: "Thanks! Message sent.",
       successSub: "I'll get back to you by email.",
     },

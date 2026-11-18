@@ -5,7 +5,9 @@ export type Lang = "pl" | "en";
 export const dicts = { pl, en };
 
 export const SITE = {
-  email: "kamil@softarm.pl",
+  /** Alias kontakt@ (przekierowanie w OVH na skrzynkę Kamila). Trzymany w częściach:
+   *  pełny adres składa skrypt w Contact.astro, więc nie ma go w HTML dla prostych botów. */
+  emailParts: ["kontakt", "softarm.pl"] as const,
   linkedin: "https://linkedin.com/in/kamil-waldoch",
 };
 
