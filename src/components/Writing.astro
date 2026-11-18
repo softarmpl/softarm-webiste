@@ -10,9 +10,9 @@ const posts = (await getCollection("writing", (p) => p.data.lang === lang)).sort
 );
 const fmt = new Intl.DateTimeFormat(lang === "pl" ? "pl-PL" : "en-GB", { day: "numeric", month: "long", year: "numeric" });
 ---
-<section id="writing" class="wr paper">
+<section id="writing" class="wr">
   <div class="wrap">
-    <SectionHeader eyebrow={t.eyebrow} title={t.title} />
+    <SectionHeader eyebrow={t.eyebrow} title={t.title} as="h1">{t.lead}</SectionHeader>
     <ul class="wr-list">
       {posts.map((p) => (
         <li>

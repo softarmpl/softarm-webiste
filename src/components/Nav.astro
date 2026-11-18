@@ -1,5 +1,5 @@
 ---
-import { dicts, homePath, otherLang, type Lang } from "../i18n";
+import { dicts, homePath, otherLang, writingPath, type Lang } from "../i18n";
 
 interface Props {
   lang: Lang;
@@ -11,10 +11,10 @@ const t = dicts[lang].nav;
 const home = homePath(lang);
 const switchHref = Astro.props.switchHref ?? homePath(otherLang(lang));
 const links = [
-  { id: "work", label: t.work },
-  { id: "about", label: t.about },
-  { id: "services", label: t.services },
-  { id: "writing", label: t.writing },
+  { href: `${home}#work`, label: t.work },
+  { href: `${home}#about`, label: t.about },
+  { href: `${home}#services`, label: t.services },
+  { href: writingPath(lang), label: t.writing },
 ];
 ---
 <header class="nav">
@@ -23,7 +23,7 @@ const links = [
     <div class="nav-right">
       <nav class="nav-links" id="nav-menu">
         {links.map((l) => (
-          <a href={`${home}#${l.id}`}>{l.label}</a>
+          <a href={l.href}>{l.label}</a>
         ))}
         <a href={`${home}#contact`} class="nav-m">{t.contact}</a>
       </nav>

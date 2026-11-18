@@ -16,4 +16,7 @@ export const homePath = (lang: Lang) => (lang === "pl" ? "/" : "/en/");
 export const postPath = (lang: Lang, slug: string) =>
   lang === "pl" ? `/teksty/${slug}/` : `/en/writing/${slug}/`;
 
+/** Path of the writing index page for a language. */
+export const writingPath = (lang: Lang) => (lang === "pl" ? "/teksty/" : "/en/writing/");
+
 export const otherLang = (lang: Lang): Lang => (lang === "pl" ? "en" : "pl");

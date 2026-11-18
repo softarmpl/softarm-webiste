@@ -6,7 +6,6 @@ import Hero from "./Hero.astro";
 import About from "./About.astro";
 import Projects from "./Projects.astro";
 import Experience from "./Experience.astro";
-import Writing from "./Writing.astro";
 import Services from "./Services.astro";
 import Testimonial from "./Testimonial.astro";
 import Contact from "./Contact.astro";
@@ -24,8 +23,7 @@ const { lang } = Astro.props;
     <Projects lang={lang} />
     <About lang={lang} />
     <Services lang={lang} />
-    <Writing lang={lang} />
     <Contact lang={lang} />
   </main>
-  <Footer />
+  <Footer lang={lang} />
 </Base>

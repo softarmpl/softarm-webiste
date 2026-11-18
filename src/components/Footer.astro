@@ -1,10 +1,13 @@
 ---
-import { SITE } from "../i18n";
+import { dicts, SITE, writingPath, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
 ---
 <footer class="foot">
   <div class="wrap foot-inner">
-    <span>© {new Date().getFullYear()} Kamil Wałdoch · SoftArm · Gdynia</span>
+    <span>© {new Date().getFullYear()} Kamil Wałdoch · SoftArm · Gdynia · Poland</span>
     <div class="foot-links">
+      <a href={writingPath(lang)}>{dicts[lang].writing.footerLink}</a>
       <a href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
       <a href={`mailto:${SITE.email}`}>E-mail</a>
     </div>
