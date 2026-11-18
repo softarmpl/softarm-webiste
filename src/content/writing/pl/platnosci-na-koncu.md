@@ -1,6 +1,7 @@
 ---
 title: "Moduł płatności był jedną z ostatnich funkcji"
 lead: "O projekcie, który miał tysiące użytkowników i mało płacących."
+description: "Aplikacja z tysiącami użytkowników, którą klient zamknął, bo mało kto płacił. Dlaczego warto najpierw sprawdzić, czy ludzie chcą za produkt zapłacić."
 date: 2026-06-16
 lang: pl
 slug: platnosci-na-koncu

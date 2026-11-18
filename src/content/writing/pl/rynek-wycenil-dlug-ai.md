@@ -1,6 +1,7 @@
 ---
 title: "Rynek wycenił dług techniczny kodu z AI"
 lead: "Notatka z GITEX AI w Berlinie."
+description: "Notatka z GITEX AI w Berlinie: obok firm budujących z AI rośnie rynek sprzątania po kodzie z AI. Dług techniczny wyceniono, zanim firmy go zauważyły."
 date: 2026-07-02
 lang: pl
 slug: rynek-wycenil-dlug-ai

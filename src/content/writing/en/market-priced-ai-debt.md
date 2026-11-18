@@ -1,6 +1,7 @@
 ---
 title: "The market has priced in AI's technical debt"
 lead: "A note from GITEX AI in Berlin."
+description: "A note from GITEX AI in Berlin: next to companies building with AI, a market for cleaning up AI-generated code. The debt got priced before companies noticed it."
 date: 2026-07-02
 lang: en
 slug: market-priced-ai-debt

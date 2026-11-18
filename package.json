@@ -12,7 +12,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.4",
-    "astro": "^7.0.7"
+    "@fontsource/albert-sans": "^5.3.0",
+    "@fontsource/nata-sans": "^5.3.0",
+    "astro": "^7.0.7",
+    "satori": "^0.63.2",
+    "sharp": "^0.35.5"
   }
 }
