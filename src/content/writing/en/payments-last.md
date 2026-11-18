@@ -1,6 +1,7 @@
 ---
 title: "The payments module was one of the last features"
 lead: "About a product with thousands of users and few paying ones."
+description: "An app with thousands of users that the client shut down because hardly anyone paid. Why it is worth checking first whether people want to pay for the product."
 date: 2026-06-16
 lang: en
 slug: payments-last

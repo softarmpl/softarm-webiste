@@ -8,15 +8,30 @@ import { dicts, homePath, otherLang, postPath, writingPath } from "../i18n";
 
 interface Props { post: CollectionEntry<"writing"> }
 const { post } = Astro.props;
-const { lang, slug, translation, title, lead, date } = post.data;
+const { lang, slug, translation, title, lead, description, date } = post.data;
 const t = dicts[lang].writing;
 const { Content } = await render(post);
 const other = otherLang(lang);
 const otherHref = translation ? postPath(other, translation) : homePath(other);
 const alternates = { [lang]: postPath(lang, slug), ...(translation ? { [other]: otherHref } : {}) };
+const site = Astro.site!;
+const url = new URL(postPath(lang, slug), site).href;
+const image = `/og/${lang}/${slug}.png`;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: title,
+  description: description ?? lead,
+  datePublished: date.toISOString().slice(0, 10),
+  inLanguage: lang,
+  url,
+  mainEntityOfPage: url,
+  image: new URL(image, site).href,
+  author: { "@type": "Person", name: "Kamil Wałdoch", url: new URL(homePath(lang), site).href },
+};
 const fmt = new Intl.DateTimeFormat(lang === "pl" ? "pl-PL" : "en-GB", { day: "numeric", month: "long", year: "numeric" });
 ---
-<Base lang={lang} title={`${title} · Kamil Wałdoch`} description={lead} alternates={alternates} type="article">
+<Base lang={lang} title={`${title} · Kamil Wałdoch`} description={description ?? lead} alternates={alternates} type="article" image={image} publishedTime={date} schema={schema}>
   <Nav lang={lang} switchHref={otherHref} />
   <main>
     <article class="post wrap">
@@ -25,6 +40,10 @@ const fmt = new Intl.DateTimeFormat(lang === "pl" ? "pl-PL" : "en-GB", { day: "n
       <h1 class="post-title" style={`view-transition-name: post-${slug}`}>{title}</h1>
       <p class="post-lead">{lead}</p>
       <div class="post-body"><Content /></div>
+      <aside class="post-cta">
+        <p>{t.ctaText}</p>
+        <a class="btn btn-signal" href={`${homePath(lang)}#contact`}>{t.ctaLink} →</a>
+      </aside>
       <p class="post-foot">
         {translation && <a class="link" href={otherHref} hreflang={other}>{t.otherLang} →</a>}
       </p>
@@ -36,6 +55,8 @@ const fmt = new Intl.DateTimeFormat(lang === "pl" ? "pl-PL" : "en-GB", { day: "n
 <style>
   .post { max-width: calc(68ch + 2 * var(--gutter)); padding-block: var(--space-6) var(--section-pad); }
   .post-back { display: inline-flex; padding: 0.55rem 0.95rem; text-decoration: none; margin-bottom: var(--space-6); transition: background 0.15s ease, color 0.15s ease; }
+  .post-cta { margin-top: var(--space-6); padding-top: var(--space-5); border-top: 1px solid var(--line); display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+  .post-cta p { font-size: var(--fs-lead); }
   .post-back:hover { background: var(--ink); color: var(--ground); }
   .post-title { font-size: var(--fs-display-l); margin-bottom: var(--space-4); text-wrap: balance; }
   .post-lead { font-size: var(--fs-lead); color: var(--ink-muted); line-height: 1.45; margin-bottom: var(--space-5); padding-bottom: var(--space-5); border-bottom: 1px solid var(--line); }

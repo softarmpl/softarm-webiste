@@ -1,6 +1,7 @@
 ---
 title: "Wszyscy używali AI, a projekty i tak się opóźniały"
 lead: "Z audytu działu IT: problem nie był w kodzie."
+description: "Audyt działu IT pokazał, że AI przyspieszyło pisanie kodu, ale nie projekty. Co mówią raporty DORA i badanie NBER i co warto mierzyć zamiast commitów."
 date: 2026-10-08
 lang: pl
 slug: ai-nie-przyspieszylo-projektow

@@ -8,6 +8,7 @@ export const pl = {
     description:
       "Pomagam właścicielom firm zdecydować, czy produkt jest gotowy do uruchomienia, co grozi i ile będzie kosztować utrzymanie. Tech Lead i architekt, 16 lat w projektach IT.",
     jobTitle: "Tech Lead i architekt oprogramowania",
+    knowsAbout: ["architektura oprogramowania", "prowadzenie zespołów IT", "audyt IT", "AI w projektach IT", "SOC 2"],
   },
   nav: {
     about: "Jak pracuję",
@@ -132,6 +133,8 @@ export const pl = {
     read: "Czytaj",
     back: "← Wszystkie teksty",
     otherLang: "Read in English",
+    ctaText: "Masz podobną sytuację w swoim projekcie? Napisz, porozmawiamy.",
+    ctaLink: "Napisz do mnie",
   },
   services: {
     eyebrow: "Współpraca",

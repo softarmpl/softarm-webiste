@@ -9,6 +9,8 @@ const writing = defineCollection({
   schema: z.object({
     title: z.string(),
     lead: z.string(),
+    /** Opis do wyszukiwarek i podglądu linku (ok. 150-160 znaków). Bez niego używany jest `lead`. */
+    description: z.string().optional(),
     date: z.coerce.date(),
     lang: z.enum(["pl", "en"]),
     slug: z.string(),

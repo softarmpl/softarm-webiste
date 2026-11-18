@@ -9,6 +9,7 @@ export const en: Dict = {
     description:
       "I help business owners decide whether a product is ready to launch, what the risks are and what it will cost to run. Tech Lead and architect, 16 years in software.",
     jobTitle: "Tech Lead & Solutions Architect",
+    knowsAbout: ["software architecture", "leading IT teams", "IT audit", "AI in software delivery", "SOC 2"],
   },
   nav: {
     about: "How I work",
@@ -133,6 +134,8 @@ export const en: Dict = {
     read: "Read",
     back: "← All writing",
     otherLang: "Czytaj po polsku",
+    ctaText: "Facing something similar in your project? Get in touch and we can talk it through.",
+    ctaLink: "Write to me",
   },
   services: {
     eyebrow: "Working with me",

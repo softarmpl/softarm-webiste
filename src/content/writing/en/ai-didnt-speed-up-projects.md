@@ -1,6 +1,7 @@
 ---
 title: "Everyone used AI, and projects were still late"
 lead: "From an IT department audit: the problem wasn't the code."
+description: "An IT department audit showed that AI sped up writing code, not projects. What the DORA reports and an NBER study say, and what to measure instead of commits."
 date: 2026-10-08
 lang: en
 slug: ai-didnt-speed-up-projects

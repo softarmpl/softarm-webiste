@@ -187,6 +187,8 @@ const t = d.contact;
       if (res.ok && data.success) {
         status.textContent = "";
         form.classList.add("sent"); // chowa pola i przycisk, pokazuje potwierdzenie
+        // Konwersja w GA4 (zdarzenie zalecane "generate_lead"); gtag jest tylko na produkcji.
+        (window as { gtag?: (...args: unknown[]) => void }).gtag?.("event", "generate_lead", { form: "contact" });
       } else {
         throw new Error(data.message || "błąd");
       }
