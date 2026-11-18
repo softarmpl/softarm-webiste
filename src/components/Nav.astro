@@ -23,7 +23,7 @@ const links = [
     <div class="nav-right">
       <nav class="nav-links" id="nav-menu">
         {links.map((l) => (
-          <a href={l.href}>{l.label}</a>
+          <a class="u-draw" href={l.href}>{l.label}</a>
         ))}
         <a href={`${home}#contact`} class="nav-m">{t.contact}</a>
       </nav>
@@ -46,6 +46,7 @@ const links = [
 
 <style>
   .nav {
+    view-transition-name: site-nav; /* nawigacja stoi w miejscu przy przejściu między stronami */
     position: sticky;
     top: 0;
     z-index: 50;
@@ -84,8 +85,6 @@ const links = [
     font-size: var(--fs-small);
     font-weight: 400;
     color: var(--ink-muted);
-    text-decoration: none;
-    transition: color 0.15s ease;
   }
   .nav-links a:hover { color: var(--ink); }
   .nav-lang { padding: 0.45rem 0.7rem; text-decoration: none; }
@@ -154,6 +153,7 @@ const links = [
       padding-block: 0.8rem;
       color: var(--ink);
       border-bottom: 1px solid var(--line);
+      background: none;
     }
     .nav-links a:last-child { border-bottom: 0; }
     .nav-links .nav-m { display: block; color: var(--signal-ink); }

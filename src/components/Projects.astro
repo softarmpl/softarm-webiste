@@ -8,7 +8,7 @@ const t = dicts[Astro.props.lang].work;
   <div class="wrap">
     <SectionHeader eyebrow={t.eyebrow} title={t.title} />
 
-    <div class="cards">
+    <div class="cards" data-reveal>
       {t.projects.map((p) => (
         <article class="card">
           <span class="card-tag label">{p.tag}</span>

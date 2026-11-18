@@ -24,8 +24,7 @@ export const pl = {
     name: "Projekt IT bez niespodzianek",
     lead: "Wiesz, czy możesz uruchomić produkt, co grozi i ile będzie kosztować utrzymanie. Projektuję architekturę i prowadzę zespół od pierwszej rozmowy do wdrożenia.",
     thesis: ["Pisanie kodu staniało.", "Decyzje nie."],
-    ctaPrimary: "Napisz do mnie",
-    ctaSecondary: "Zobacz projekty",
+    ctaPrimary: "Porozmawiajmy",
     stats: [
       { n: "16 lat", l: "w branży" },
       { n: "ponad 20 produktów", l: "na produkcji, nie w szufladzie" },
@@ -143,7 +142,7 @@ export const pl = {
       { title: "Produkt zaraz trafi do klientów albo do audytu.", body: "Mówię, co może się wysypać, co zagraża sprzedaży i co poprawić najpierw." },
       { title: "Projekt potrzebuje prowadzenia technicznego.", body: "Ustawiam architekturę i standardy, prowadzę zespół, także gdy dużą część kodu pisze AI. Pilnuję, żeby koszt utrzymania był znany, zanim system urośnie." },
     ],
-    cta: "Skontaktuj się",
+    cta: "Porozmawiajmy",
   },
   testimonial: {
     eyebrow: "Rekomendacja",

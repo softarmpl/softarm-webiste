@@ -10,10 +10,10 @@ const x = d.experience;
   <div class="wrap about-grid">
     <div>
       <SectionHeader eyebrow={t.eyebrow} title={t.title} highlight={d.hero.thesis[1]} />
-      {t.paragraphs.map((p) => <p class="about-p">{p}</p>)}
+      {t.paragraphs.map((p) => <p class="about-p" data-reveal>{p}</p>)}
 
-      <h3 class="tl-title">{x.title}</h3>
-      <ol class="tl">
+      <h3 class="tl-title" data-reveal>{x.title}</h3>
+      <ol class="tl" data-reveal-group>
         {x.items.map((i) => (
           <li>
             <span class="tl-period">{i.period}</span>
@@ -22,11 +22,11 @@ const x = d.experience;
           </li>
         ))}
       </ol>
-      <p class="tl-cred">{x.credentials.join(" · ")}</p>
+      <p class="tl-cred" data-reveal>{x.credentials.join(" · ")}</p>
     </div>
     <div class="how">
-      <h3 class="how-title">{t.howTitle}</h3>
-      <ol class="how-list">
+      <h3 class="how-title" data-reveal>{t.howTitle}</h3>
+      <ol class="how-list" data-reveal-group>
         {t.how.map((h, i) => (
           <li class="how-item">
             <span class="how-n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>

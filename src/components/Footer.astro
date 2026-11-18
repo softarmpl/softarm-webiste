@@ -7,9 +7,9 @@ const { lang } = Astro.props;
   <div class="wrap foot-inner">
     <span>© {new Date().getFullYear()} Kamil Wałdoch · SoftArm · Gdynia · Poland</span>
     <div class="foot-links">
-      <a href={writingPath(lang)}>{dicts[lang].writing.footerLink}</a>
-      <a href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a href={`mailto:${SITE.email}`}>E-mail</a>
+      <a class="u-draw" href={writingPath(lang)}>{dicts[lang].writing.footerLink}</a>
+      <a class="u-draw" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="u-draw" href={`mailto:${SITE.email}`}>E-mail</a>
     </div>
   </div>
 </footer>
@@ -26,6 +26,6 @@ const { lang } = Astro.props;
     color: var(--ink-muted);
   }
   .foot-links { display: flex; gap: var(--space-4); }
-  .foot-links a { font-weight: 400; text-decoration: none; transition: color 0.15s ease; }
+  .foot-links a { font-weight: 400; }
   .foot-links a:hover { color: var(--ink); }
 </style>

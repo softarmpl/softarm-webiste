@@ -22,7 +22,7 @@ const fmt = new Intl.DateTimeFormat(lang === "pl" ? "pl-PL" : "en-GB", { day: "n
     <article class="post wrap">
       <a class="post-back chip" href={writingPath(lang)}>{t.back}</a>
       <p class="eyebrow"><time datetime={date.toISOString().slice(0, 10)}>{fmt.format(date)}</time></p>
-      <h1 class="post-title">{title}</h1>
+      <h1 class="post-title" style={`view-transition-name: post-${slug}`}>{title}</h1>
       <p class="post-lead">{lead}</p>
       <div class="post-body"><Content /></div>
       <p class="post-foot">

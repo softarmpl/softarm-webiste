@@ -5,7 +5,7 @@ const t = dicts[Astro.props.lang].testimonial;
 ---
 <section id="recommendation" class="tm paper">
   <div class="wrap">
-    <figure class="tm-card">
+    <figure class="tm-card" data-reveal-group>
       <p class="eyebrow tm-eyebrow">{t.eyebrow}</p>
       <blockquote class="tm-quote statement">{Astro.props.lang === "pl" ? "„" : "“"}{t.quote}”</blockquote>
       <figcaption class="tm-by">

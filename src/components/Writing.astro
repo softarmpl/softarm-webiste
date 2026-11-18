@@ -13,12 +13,12 @@ const fmt = new Intl.DateTimeFormat(lang === "pl" ? "pl-PL" : "en-GB", { day: "n
 <section id="writing" class="wr">
   <div class="wrap">
     <SectionHeader eyebrow={t.eyebrow} title={t.title} as="h1">{t.lead}</SectionHeader>
-    <ul class="wr-list">
+    <ul class="wr-list" data-reveal-group>
       {posts.map((p) => (
         <li>
           <a class="wr-item" href={postPath(lang, p.data.slug)}>
             <time class="wr-date" datetime={p.data.date.toISOString().slice(0, 10)}>{fmt.format(p.data.date)}</time>
-            <span class="wr-h">{p.data.title}</span>
+            <span class="wr-h" style={`view-transition-name: post-${p.data.slug}`}>{p.data.title}</span>
             <span class="wr-lead">{p.data.lead}</span>
             <span class="wr-go" aria-hidden="true">→</span>
           </a>

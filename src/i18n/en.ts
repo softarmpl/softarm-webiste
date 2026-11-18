@@ -25,8 +25,7 @@ export const en: Dict = {
     name: "Software projects without surprises",
     lead: "You know whether you can launch, what the risks are and what it will cost to run. I design the architecture and lead the team from the first conversation to launch.",
     thesis: ["Writing code got cheaper.", "Decisions didn't."],
-    ctaPrimary: "Get in touch",
-    ctaSecondary: "See the work",
+    ctaPrimary: "Let's talk",
     stats: [
       { n: "16 years", l: "in software" },
       { n: "20+ products", l: "in production, not in a drawer" },
@@ -144,7 +143,7 @@ export const en: Dict = {
       { title: "Your product is about to reach customers or an audit.", body: "I tell you what may break, what puts sales at risk and what to fix first." },
       { title: "Your project needs a technical lead.", body: "I set the architecture and standards and lead the team, including when AI writes much of the code. I make sure running costs are known before the system grows." },
     ],
-    cta: "Get in touch",
+    cta: "Let's talk",
   },
   testimonial: {
     eyebrow: "Recommendation",

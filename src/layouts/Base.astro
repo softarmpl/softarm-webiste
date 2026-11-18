@@ -38,6 +38,8 @@ const person = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Klasa .js włącza ukrywanie elementów do animacji. Ustawiana przed pierwszym malowaniem, bez mignięcia. -->
+    <script is:inline>"IntersectionObserver" in window && document.documentElement.classList.add("js");</script>
     <Analytics />
     <title>{title}</title>
     <meta name="description" content={description} />
@@ -63,5 +65,23 @@ const person = {
   </head>
   <body>
     <slot />
+    <script>
+      // Wyłanianie przy przewijaniu. Elementy wchodzące w widok w jednej partii dostają kolejne --i (opóźnienie).
+      const targets = document.querySelectorAll<HTMLElement>("[data-reveal], [data-reveal-group] > *");
+      const io = new IntersectionObserver(
+        (entries) => {
+          let n = 0;
+          for (const e of entries) {
+            if (!e.isIntersecting) continue;
+            const el = e.target as HTMLElement;
+            el.style.setProperty("--i", String(Math.min(n++, 6)));
+            el.classList.add("is-in");
+            io.unobserve(el);
+          }
+        },
+        { rootMargin: "0px 0px -8% 0px" }
+      );
+      targets.forEach((el) => io.observe(el));
+    </script>
   </body>
 </html>

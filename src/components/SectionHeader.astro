@@ -6,7 +6,7 @@ interface Props { eyebrow: string; title: string; highlight?: string; center?: b
 const { eyebrow, title, highlight, center, as: Tag = "h2" } = Astro.props;
 const split = highlight && title.endsWith(highlight) ? title.slice(0, -highlight.length) : null;
 ---
-<header class:list={["sh", { "sh-center": center }]}>
+<header class:list={["sh", { "sh-center": center }]} data-reveal-group>
   <p class="eyebrow">{eyebrow}</p>
   <Tag class="sh-title">
     {split !== null

@@ -7,7 +7,7 @@ const t = dicts[Astro.props.lang].experience;
 <section id="experience" class="exp">
   <div class="wrap">
     <SectionHeader eyebrow={t.eyebrow} title={t.title} />
-    <ol class="exp-list">
+    <ol class="exp-list" data-reveal-group>
       {t.items.map((i) => (
         <li class="exp-item">
           <span class="exp-period">{i.period}</span>
@@ -19,7 +19,7 @@ const t = dicts[Astro.props.lang].experience;
         </li>
       ))}
     </ol>
-    <ul class="cred">
+    <ul class="cred" data-reveal-group>
       {t.credentials.map((c) => <li class="chip">{c}</li>)}
     </ul>
   </div>

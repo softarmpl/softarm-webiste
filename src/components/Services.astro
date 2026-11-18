@@ -1,19 +1,19 @@
 ---
 import Dotted from "./Dotted.astro";
-import { dicts, SITE, type Lang } from "../i18n";
+import { dicts, type Lang } from "../i18n";
 interface Props { lang: Lang }
 const t = dicts[Astro.props.lang].services;
 ---
 <section id="services" class="svc">
   <div class="wrap">
     <div class="svc-block">
-      <div class="svc-head">
+      <div class="svc-head" data-reveal-group>
         <p class="eyebrow">{t.eyebrow}</p>
         <h2 class="svc-title"><Dotted text={t.title} /></h2>
         <p class="svc-lead">{t.lead}</p>
-        <a href={`mailto:${SITE.email}`} class="btn btn-signal">{t.cta} →</a>
+        <a href="#contact" class="btn btn-signal">{t.cta} →</a>
       </div>
-      <ol class="svc-list">
+      <ol class="svc-list" data-reveal-group>
         {t.items.map((i, n) => (
           <li class="svc-item">
             <span class="svc-n" aria-hidden="true">{String(n + 1).padStart(2, "0")}</span>
