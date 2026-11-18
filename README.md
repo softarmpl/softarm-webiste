@@ -1,6 +1,6 @@
-# Strona wizytówka - MVP w 5 tygodni (Astro)
+# softarm.pl: strona osobista Kamila Wałdocha (Astro)
 
-Jasna, minimalistyczna strona-wizytówka. Jeden plik = jedna sekcja.
+Strona "kim jestem": Tech Lead i architekt, projekty, doświadczenie, teksty, mała sekcja o współpracy przez SoftArm. PL pod `/`, EN pod `/en/`.
 
 ## Uruchomienie
 ```bash
@@ -10,20 +10,14 @@ npm run build    # produkcyjny build do ./dist
 ```
 
 ## Gdzie co zmienić
-- `src/components/Hero.astro`     - nagłówek + liczby-wskaźniki
-- `src/components/How.astro`      - "dla kogo" + proces 4 kroki
-- `src/components/Projects.astro` - case studies (tablica `projects` na górze pliku)
-- `src/components/Why.astro`      - "dlaczego ja" + biogram
-- `src/components/Contact.astro`  - FAQ + kontakt + stopka
-- `src/styles/global.css`         - kolory, fonty, skala (sekcja :root)
+- `src/i18n/pl.ts`, `src/i18n/en.ts` - **cała treść strony** (oba pliki mają ten sam kształt)
+- `src/i18n/index.ts`                 - e-mail, LinkedIn, ścieżki
+- `src/content/writing/{pl,en}/*.md`  - teksty; `translation` = slug wersji w drugim języku
+- `src/components/*.astro`            - sekcje (jeden plik = jedna sekcja), `Home.astro` ustawia kolejność
+- `src/styles/global.css`             - kolory, fonty, skala (sekcja :root)
 
-## DO UZUPEŁNIENIA (szukaj nawiasów [ ])
-- [Twoje imię]        - Nav, Why, Contact, stopka
-- [twój@email.pl]     - Contact (2×), stopka
-- [link do Calendly]  - Contact (przycisk CTA)
-- [link do LinkedIn]  - stopka
-- [X–Y] zł            - Contact, FAQ (widełki cenowe)
+## Nowy tekst
+Dodaj `src/content/writing/pl/<slug>.md` i `src/content/writing/en/<slug>.md` z frontmatterem `title`, `lead`, `date`, `lang`, `slug`, `translation`. Lista na stronie głównej i podstrony generują się same.
 
 ## Wdrożenie
-`npm run build` tworzy statyczne pliki w `dist/`.
-Wrzuć na Netlify / Vercel / Cloudflare Pages (darmowe) albo dowolny hosting.
+Push do `main` uruchamia `.github/workflows/deploy.yml` (GitHub Pages, domena z `public/CNAME`).

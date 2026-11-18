@@ -1,0 +1,170 @@
+// Cała treść polskiej wersji strony. Komponenty biorą teksty stąd (patrz src/i18n/index.ts).
+// Źródło copy: vault, MarkaOsobista/Strona softarm.pl - nowa wersja.md
+// WARIANT B "Dla odwiedzającego": nagłówki mówią, co dostaje czytelnik; dowody wyżej; mniej sekcji.
+export const pl = {
+  lang: "pl",
+  meta: {
+    title: "Kamil Wałdoch: Tech Lead i architekt oprogramowania",
+    description:
+      "Pomagam właścicielom firm zdecydować, czy produkt jest gotowy do uruchomienia, co grozi i ile będzie kosztować utrzymanie. Tech Lead i architekt, 16 lat w projektach IT.",
+    jobTitle: "Tech Lead i architekt oprogramowania",
+  },
+  nav: {
+    about: "Jak pracuję",
+    work: "Projekty",
+    writing: "Teksty",
+    services: "Współpraca",
+    contact: "Kontakt",
+    menuLabel: "Otwórz menu",
+    switchLabel: "EN",
+    switchTitle: "English version",
+  },
+  hero: {
+    eyebrow: "Kamil Wałdoch · Tech Lead i architekt oprogramowania",
+    name: "Projekt IT bez niespodzianek",
+    lead: "Wiesz, czy możesz uruchomić produkt, co grozi i ile będzie kosztować utrzymanie. Projektuję architekturę i prowadzę zespół od pierwszej rozmowy do wdrożenia.",
+    thesis: ["Pisanie kodu staniało.", "Decyzje nie."],
+    ctaPrimary: "Porozmawiajmy",
+    stats: [
+      { n: "16 lat", l: "w branży" },
+      { n: "ponad 20 produktów", l: "na produkcji, nie w szufladzie" },
+      { n: "7 krajów", l: "klienci z Europy, USA i Bliskiego Wschodu" },
+    ],
+  },
+  about: {
+    eyebrow: "Jak pracuję",
+    title: "Zaczynam przed pierwszą linijką kodu",
+    photoAlt: "Kamil Wałdoch",
+    paragraphs: [
+      "Wchodzę do projektu, zanim powstanie kod: rozmowy z klientem, warsztat albo wycena. Potem projektuję architekturę i prowadzę zespoły developerskie.",
+      "Pracowałem z założycielami i zarządami firm z Polski, USA, Norwegii i Arabii Saudyjskiej. Klienci wracali z kolejnymi projektami.",
+    ],
+    howTitle: "Czego możesz się spodziewać",
+    how: [
+      { title: "Dostajesz decyzję.", body: "Uruchamiać teraz, po poprawkach albo jeszcze nie. Z uzasadnieniem, które zrozumiesz bez czytania kodu." },
+      { title: "Ryzyka mają cenę.", body: "Przy każdym: co się stanie, jeśli je zostawisz, i ile kosztuje naprawa. Najpierw to, co blokuje start." },
+      { title: "Koszt utrzymania znasz przed startem.", body: "Chmura, monitoring, ludzie i tokeny AI policzone, zanim zobaczysz je na fakturze." },
+    ],
+  },
+  work: {
+    eyebrow: "Wybrane projekty",
+    title: "Tam, gdzie błędy są drogie",
+    labels: { problem: "Kontekst", did: "Moja rola", result: "Efekt" },
+    projects: [
+      {
+        tag: "Logistyka · audyt",
+        title: "Zarząd dowiedział się, dlaczego projekty się opóźniają",
+        metric: "",
+        metricLabel: "Audyt działu IT w miesiąc · 18 osób w IT, firma na ok. 300",
+        problem: "Wszyscy korzystali z AI, a większe projekty i tak się opóźniały. Zarząd chciał wiedzieć dlaczego.",
+        did: "Rozmowy z programistami, DevOps, supportem IT i kierownictwem. Mapa tego, jak w praktyce przebiegają zadania, wydania i decyzje.",
+        result: "Rekomendacje dla zarządu: kto odpowiada za produkt, jak planować i jak wydawać. Potem pomoc w wyborze Head of IT i przekazanie mu wyników audytu.",
+        stack: [] as string[],
+      },
+      {
+        tag: "Cybersecurity",
+        title: "Zero włamań, chmura tańsza o około połowę",
+        metric: "",
+        metricLabel: "Platforma analizy ruchu sieciowego · ok. 4000 użytkowników",
+        problem: "System, który sam był celem ataków. Przetwarzał setki gigabajtów danych o ruchu sieciowym.",
+        did: "Architektura na AWS, monitoring, migracja logowania na OIDC, odchudzenie infrastruktury.",
+        result: "Żadnego udanego włamania przez cały czas działania systemu. Koszt chmury niższy o ok. połowę.",
+        stack: ["AWS", "Keycloak (OIDC)", "Loki", "Grafana"],
+      },
+      {
+        tag: "Fintech · Arabia Saudyjska",
+        title: "Produkt z LLM mógł trafić do kolejnych klientów",
+        metric: "",
+        metricLabel: "Platforma do zarządzania majątkiem · audyt w ok. pół roku",
+        problem: "Nowy produkt oparty na LLM, budowany od zera. Żeby sprzedawać go kolejnym klientom, musiał przejść audyt bezpieczeństwa.",
+        did: "Architektura i wdrożenie funkcji LLM: przetwarzanie dużych dokumentów, czat z dokumentami, analiza transakcji, kontrola kosztów tokenów. Potem SOC 2 Type II od strony technicznej, bezpośrednio z audytorem.",
+        result: "Na produkcji od grudnia 2025. Raport SOC 2 Type II w ok. pół roku, potrzebny do sprzedaży kolejnym klientom. Koszty tokenów pod kontrolą od początku.",
+        stack: ["LangGraph", "Google Gemini", "OCR", "AWS"],
+      },
+      {
+        tag: "Lotnictwo",
+        title: "Dwa wdrożone produkty dla lotnictwa",
+        metric: "",
+        metricLabel: "Serwis odrzutowców i bezpieczeństwo lotów",
+        problem: "Planowanie serwisu prywatnych odrzutowców oraz system wspierający zgodność z przepisami i bezpieczeństwo lotów komercyjnych.",
+        did: "Rozmowy i warsztaty z klientem przed startem, prowadzenie projektu od strony technicznej, code review, DevOps.",
+        result: "",
+        stack: [] as string[],
+      },
+    ],
+  },
+  experience: {
+    eyebrow: "Doświadczenie",
+    title: "Skąd to wiem",
+    items: [
+      {
+        org: "Profil Software",
+        role: "Tech Lead i architekt",
+        period: "od 2018",
+        body: "Rozmowy z klientami przed projektem, architektura i prowadzenie zespołów. 8 produktów, m.in. w fintechu, cybersecurity i lotnictwie.",
+      },
+      {
+        org: "SoftArm",
+        role: "własna firma",
+        period: "od 2012",
+        body: "Produkty dla klientów od pomysłu po utrzymanie, wsparcie techniczne dla startupów. Od 2018 pracuję głównie z Profil Software.",
+      },
+      {
+        org: "PIRO",
+        role: "developer, konsultant, trener",
+        period: "2010–2014",
+        body: "Firma produktowa z branży turystycznej: CRM dla biur podróży i system rezerwacji dla touroperatorów. Wdrożenia u klientów i szkolenia.",
+      },
+    ],
+    credentials: [
+      "AWS Certified Solutions Architect – Associate",
+      "mgr inż. informatyki",
+      "studia podyplomowe z zarządzania projektami IT",
+    ],
+  },
+  writing: {
+    eyebrow: "Teksty",
+    title: "Notatki z pracy",
+    lead: "Krótkie notatki z projektów, audytów i konferencji: architektura, prowadzenie zespołów, AI w wytwarzaniu oprogramowania.",
+    metaTitle: "Notatki z pracy · Kamil Wałdoch",
+    metaDescription: "Teksty Kamila Wałdocha o architekturze, prowadzeniu zespołów i AI w projektach IT. Wnioski z projektów, audytów i konferencji.",
+    footerLink: "Notatki z pracy",
+    read: "Czytaj",
+    back: "← Wszystkie teksty",
+    otherLang: "Read in English",
+  },
+  services: {
+    eyebrow: "Współpraca",
+    title: "Zanim wydasz więcej na wdrożenie",
+    lead: "Odpowiem na trzy pytania: czy aplikacja nadaje się na produkcję, jakie są zagrożenia i ile będzie kosztować utrzymanie.",
+    items: [
+      { title: "Masz działający prototyp i chcesz go uruchomić.", body: "Także zbudowany z AI. Sprawdzam kod, architekturę, bezpieczeństwo i wdrożenie. Dostajesz listę blokerów z priorytetami i szacunkiem kosztów, pisaną dla właściciela, nie dla programisty." },
+      { title: "Produkt zaraz trafi do klientów albo do audytu.", body: "Mówię, co może się wysypać, co zagraża sprzedaży i co poprawić najpierw." },
+      { title: "Projekt potrzebuje prowadzenia technicznego.", body: "Ustawiam architekturę i standardy, prowadzę zespół, także gdy dużą część kodu pisze AI. Pilnuję, żeby koszt utrzymania był znany, zanim system urośnie." },
+    ],
+    cta: "Porozmawiajmy",
+  },
+  testimonial: {
+    eyebrow: "Rekomendacja",
+    quote: "Kamil i jego zespół mieli kluczowy udział w zbudowaniu naszego złożonego produktu SaaS. To szef zespołów programistycznych z najwyższej półki: ma szeroką, praktyczną wiedzę techniczną i świetnie zarządza ludźmi.",
+    role: "VP, RevOps & Strategic Accounts",
+    ctx: "klient · kwiecień 2024 · tłumaczenie z angielskiego",
+  },
+  contact: {
+    title: "Porozmawiajmy",
+    lead: "Nie musisz mieć gotowego briefu. Wystarczą dwa zdania o tym, co chcesz zbudować albo uruchomić.",
+    form: {
+      subject: "Nowa wiadomość ze strony softarm.pl",
+      name: "Imię",
+      email: "E-mail",
+      message: "Wiadomość",
+      submit: "Wyślij →",
+      sending: "Wysyłam…",
+      error: "Nie udało się wysłać. Napisz proszę na kamil@softarm.pl.",
+      successTitle: "Dzięki! Wiadomość wysłana.",
+      successSub: "Odezwę się na podany e-mail.",
+    },
+  },
+};
+
+export type Dict = typeof pl;

@@ -1,0 +1,46 @@
+---
+import { dicts, type Lang } from "../i18n";
+import SectionHeader from "./SectionHeader.astro";
+interface Props { lang: Lang }
+const t = dicts[Astro.props.lang].experience;
+---
+<section id="experience" class="exp">
+  <div class="wrap">
+    <SectionHeader eyebrow={t.eyebrow} title={t.title} />
+    <ol class="exp-list" data-reveal-group>
+      {t.items.map((i) => (
+        <li class="exp-item">
+          <span class="exp-period">{i.period}</span>
+          <div>
+            <h3 class="exp-org">{i.org}</h3>
+            <p class="exp-role">{i.role}</p>
+          </div>
+          <p class="exp-body">{i.body}</p>
+        </li>
+      ))}
+    </ol>
+    <ul class="cred" data-reveal-group>
+      {t.credentials.map((c) => <li class="chip">{c}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .exp-list { list-style: none; border-top: 1px solid var(--line-strong); }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 15rem) minmax(0, 1fr);
+    gap: var(--space-4);
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
+  .exp-period { font-size: var(--fs-small); color: var(--signal-ink); font-variant-numeric: tabular-nums; }
+  .exp-org { font-size: var(--fs-heading); }
+  .exp-role { font-size: var(--fs-small); color: var(--ink-muted); margin-top: var(--space-1); }
+  .exp-body { color: var(--ink-muted); max-width: 62ch; }
+  .cred { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5); }
+  @media (max-width: 760px) {
+    .exp-item { grid-template-columns: 1fr; gap: var(--space-2); }
+  }
+</style>

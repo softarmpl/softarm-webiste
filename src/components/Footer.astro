@@ -1,0 +1,31 @@
+---
+import { dicts, SITE, writingPath, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+---
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <span>© {new Date().getFullYear()} Kamil Wałdoch · SoftArm · Gdynia · Poland</span>
+    <div class="foot-links">
+      <a class="u-draw" href={writingPath(lang)}>{dicts[lang].writing.footerLink}</a>
+      <a class="u-draw" href={SITE.linkedin} target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="u-draw" href={`mailto:${SITE.email}`}>E-mail</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .foot { padding-block: var(--space-5); border-top: 1px solid var(--line); }
+  .foot-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    font-size: var(--fs-small);
+    color: var(--ink-muted);
+  }
+  .foot-links { display: flex; gap: var(--space-4); }
+  .foot-links a { font-weight: 400; }
+  .foot-links a:hover { color: var(--ink); }
+</style>

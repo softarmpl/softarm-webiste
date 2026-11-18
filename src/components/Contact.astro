@@ -1,184 +1,117 @@
 ---
-const faqs = [
-  {
-    q: "Ile kosztuje MVP?",
-    a: "Typowy projekt zaczyna się od 35 000 zł netto. Dokładną cenę znasz przed startem i ona się nie zmienia.",
-  },
-  {
-    q: "Jak działa gwarancja terminu w praktyce?",
-    a: "Datę oddania ustalamy na piśmie przed startem. Jeśli nie dowiozę na czas z mojej winy, pracuję dalej bez dodatkowych kosztów — aż produkt będzie gotowy.",
-  },
-  {
-    q: "Mój pomysł jest większy niż 5 tygodni — co wtedy?",
-    a: "Na rozmowie tniemy zakres do najważniejszego MVP, które da się dowieźć w 5 tygodni, a resztę planujemy na kolejne etapy. Dostajesz działający produkt szybko, nie obietnicę za pół roku.",
-  },
-  {
-    q: "Co jeśli w trakcie zmienię zdanie?",
-    a: "Dwie rundy poprawek są w cenie. Większe zmiany zakresu wyceniam osobno - zawsze przed wykonaniem.",
-  },
-  {
-    q: "Co dostaję na koniec?",
-    a: "Działający produkt na Twojej infrastrukturze, pełny kod i dokumentację. Wszystko jest Twoje.",
-  },
-  {
-    q: "Czy po zakończeniu zostaję sam?",
-    a: "Nie. Oferuję opiekę techniczną w abonamencie albo przekazanie projektu Twojemu przyszłemu zespołowi.",
-  },
-];
+import Dotted from "./Dotted.astro";
+import { dicts, SITE, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const d = dicts[Astro.props.lang];
+const t = d.contact;
 ---
-<section id="faq" class="faq">
+<section id="contact" class="cta">
   <div class="wrap">
-    <p class="eyebrow">Częste pytania</p>
-    <h2 class="faq-title">Zanim zapytasz.</h2>
-    <div class="faq-list">
-      {faqs.map((f) => (
-        <details class="faq-item">
-          <summary class="faq-q">{f.q}</summary>
-          <p class="faq-a">{f.a}</p>
-        </details>
-      ))}
+    <header class="cta-head" data-reveal-group>
+      <p class="eyebrow">{d.nav.contact}</p>
+      <h2 class="cta-title"><Dotted text={t.title} /></h2>
+    </header>
+    <div class="cta-block" data-reveal-group>
+      <div class="cta-direct">
+        <p class="cta-lead">{t.lead}</p>
+        <!-- Główna droga to formularz ("Wyślij"). Mail jako spokojny wiersz dla tych, którzy wolą własną skrzynkę.
+             LinkedIn tylko w stopce, żeby nie konkurował z formularzem. -->
+        <dl class="cta-info">
+          <div>
+            <dt class="label">{t.form.email}</dt>
+            <dd><a class="link" href={`mailto:${SITE.email}`}>{SITE.email}</a></dd>
+          </div>
+        </dl>
+      </div>
+
+      <form
+        class="cta-form"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        data-sending={t.form.sending}
+        data-error={t.form.error}
+      >
+        <input type="hidden" name="access_key" value="648bd1f4-c027-43d2-a56f-1301e439d1f7" />
+        <input type="hidden" name="subject" value={t.form.subject} />
+        <input type="hidden" name="from_name" value="softarm.pl" />
+        <input type="checkbox" name="botcheck" class="cta-hp" tabindex="-1" autocomplete="off" />
+
+        <div class="cta-row">
+          <label class="cta-field">
+            <span class="cta-label">{t.form.name}</span>
+            <input type="text" name="name" required autocomplete="name" />
+          </label>
+          <label class="cta-field">
+            <span class="cta-label">{t.form.email}</span>
+            <input type="email" name="email" required autocomplete="email" />
+          </label>
+        </div>
+        <label class="cta-field cta-msg">
+          <span class="cta-label">{t.form.message}</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="btn btn-signal cta-submit">{t.form.submit}</button>
+        <p class="cta-status" role="status" aria-live="polite"></p>
+        <div class="cta-success" role="status" aria-live="polite">
+          <span class="cta-success-mark" aria-hidden="true">✓</span>
+          <p class="cta-success-title">{t.form.successTitle}</p>
+          <p class="cta-success-sub">{t.form.successSub}</p>
+        </div>
+      </form>
     </div>
   </div>
 </section>
-
-<section id="kontakt" class="cta">
-  <div class="wrap cta-inner">
-    <h2 class="cta-title">
-      Masz pomysł? Sprawdźmy w 30 minut,<br />
-      czy da się go zbudować w 5 tygodni.
-    </h2>
-    <p class="offer cta-offer">
-      <strong>Od 35 000&nbsp;zł netto</strong> · stała cena. Nie zdążę na
-      termin — <strong>dokańczam za&nbsp;darmo.</strong>
-    </p>
-    <div class="cta-actions">
-      <a href="https://calendly.com/kamil-softarm/30min" class="btn btn-primary">Umów bezpłatną rozmowę →</a>
-    </div>
-
-    <p class="cta-or">albo opowiedz, nad czym pracujesz - odpiszę w ciągu doby</p>
-
-    <form
-      class="cta-form"
-      action="https://api.web3forms.com/submit"
-      method="POST"
-    >
-      <input type="hidden" name="access_key" value="648bd1f4-c027-43d2-a56f-1301e439d1f7" />
-      <input type="hidden" name="subject" value="Nowe zgłoszenie ze strony SoftArm" />
-      <input type="hidden" name="from_name" value="softarm.pl" />
-      <input type="checkbox" name="botcheck" class="cta-hp" tabindex="-1" autocomplete="off" />
-
-      <div class="cta-row">
-        <input type="text" name="name" placeholder="Imię" required autocomplete="name" />
-        <input type="email" name="email" placeholder="Twój e-mail" required autocomplete="email" />
-      </div>
-      <textarea name="message" rows="6" placeholder="Nad czym pracujesz? Co chcesz zbudować? Opisz śmiało - im więcej wiem, tym konkretniej odpowiem." required></textarea>
-      <button type="submit" class="btn btn-primary cta-submit">Wyślij →</button>
-      <p class="cta-status" role="status" aria-live="polite"></p>
-      <div class="cta-success" role="status" aria-live="polite">
-        <span class="cta-success-mark" aria-hidden="true">✓</span>
-        <p class="cta-success-title">Dzięki! Wiadomość wysłana.</p>
-        <p class="cta-success-sub">Odezwę się w ciągu doby na podany e-mail.</p>
-      </div>
-    </form>
-  </div>
-</section>
-
-<footer class="foot">
-  <div class="wrap foot-inner">
-    <span>© {new Date().getFullYear()} Kamil Wałdoch · SoftArm</span>
-    <div class="foot-links">
-      <a href="https://linkedin.com/in/kamil-waldoch" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:kamil@softarm.pl">E-mail</a>
-    </div>
-  </div>
-</footer>
 
 <style>
-  .faq-title { font-size: var(--step-3); margin-bottom: clamp(2rem, 5vw, 3rem); }
-  .faq-list { border-top: 1px solid var(--line); max-width: 760px; }
-  .faq-item { border-bottom: 1px solid var(--line); }
-  .faq-q {
-    font-family: var(--display);
-    font-size: var(--step-1);
-    font-weight: 500;
-    padding-block: 1.3rem;
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .cta-block {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(var(--space-5), 7vw, var(--space-7));
+    align-items: start;
   }
-  .faq-q::after { content: "+"; color: var(--accent); font-family: var(--mono); }
-  .faq-item[open] .faq-q::after { content: "−"; }
-  .faq-q::-webkit-details-marker { display: none; }
-  .faq-a {
-    color: var(--ink-soft);
-    padding-bottom: 1.3rem;
-    max-width: 60ch;
+  .cta-head { margin-bottom: var(--space-6); }
+  /* Nagłówek na całą szerokość; na wąskim ekranie skalowany do szerokości,
+     bo "Porozmawiajmy" to jedno długie słowo */
+  .cta-title { font-size: min(var(--fs-display-xl), 11.5vw); line-height: 0.92; letter-spacing: -0.045em; }
+  .cta-lead { font-size: var(--fs-lead); line-height: 1.45; max-width: 36ch; margin-bottom: var(--space-5); }
+  .cta-info { border-top: 1px solid var(--line-strong); }
+  .cta-info > div {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: var(--space-3);
+    align-items: baseline;
+    padding-block: var(--space-4);
+    border-bottom: 1px solid var(--line);
   }
+  .cta-info dd { overflow-wrap: anywhere; }
+  .cta-info .link { font-weight: 400; }
 
-  .cta { background: var(--accent-wash); border-block: 1px solid var(--line); }
-  .cta-inner { text-align: center; }
-  .cta-title { font-size: var(--step-3); margin-bottom: 1.5rem; }
-  .cta-offer { margin-bottom: 2rem; }
-  .cta-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-  }
-  .cta-mail {
-    font-family: var(--mono);
-    font-size: var(--step-0);
-    text-decoration: none;
-    border-bottom: 2px solid var(--line);
-    padding-bottom: 2px;
-  }
-  .cta-mail:hover { border-color: var(--accent); }
-
-  .cta-or {
-    margin-top: clamp(3rem, 6vw, 4.5rem);
-    margin-bottom: 1.6rem;
-    font-size: var(--step--1);
-    color: var(--ink-soft);
-  }
   .cta-form {
-    max-width: 560px;
-    margin-inline: auto;
-    text-align: left;
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-    background: var(--paper-pure);
-    border: 1px solid var(--line);
-    border-radius: 8px;
-    padding: clamp(1.6rem, 4vw, 2.6rem);
+    gap: var(--space-4);
   }
-  .cta-row {
-    display: flex;
-    gap: 1.1rem;
-  }
+  .cta-row { display: flex; gap: var(--space-4); }
+  .cta-field { display: flex; flex-direction: column; gap: var(--space-2); flex: 1; }
+  .cta-label { font-family: var(--font-display); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); }
   .cta-form input[type="text"],
   .cta-form input[type="email"],
   .cta-form textarea {
     width: 100%;
-    font-family: var(--body);
-    font-size: var(--step-0);
+    font-family: var(--font-text);
+    font-size: var(--fs-body);
+    font-weight: 400;
     color: var(--ink);
-    background: var(--paper-pure);
-    border: 1px solid var(--line);
-    border-radius: 4px;
-    padding: 0.85rem 1rem;
+    background: var(--ground-raised);
+    border: 1px solid var(--control);
+    border-radius: var(--radius-0);
+    padding: 0.9rem 1rem;
     transition: border-color 0.15s ease;
   }
-  .cta-form input:focus,
-  .cta-form textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-  }
-  .cta-form textarea { resize: vertical; min-height: 150px; }
-  .cta-submit { align-self: center; margin-top: 0.4rem; }
+  .cta-form input:hover,
+  .cta-form textarea:hover { border-color: var(--ink); }
+  .cta-form textarea { resize: vertical; min-height: 160px; }
+  .cta-submit { align-self: flex-start; }
   /* honeypot - ukryty przed ludźmi, widoczny dla botów */
   .cta-hp {
     position: absolute;
@@ -187,57 +120,38 @@ const faqs = [
     height: 1px;
     opacity: 0;
   }
-  .cta-status {
-    font-size: var(--step--1);
-    color: var(--ink-soft);
-    min-height: 1.2em;
-  }
-  .cta-status.ok { color: var(--accent); }
-  .cta-status.err { color: #b23b3b; }
+  .cta-status { font-size: var(--fs-small); color: var(--ink-muted); min-height: 1.2em; }
+  .cta-status.ok { color: var(--ink); }
+  .cta-status.err { color: var(--error); }
 
   /* Stan po wysłaniu - chowamy pola, pokazujemy potwierdzenie */
-  .cta-success { display: none; text-align: center; padding: 1.5rem 0; }
+  .cta-success { display: none; padding: var(--space-5) 0; }
   .cta-form.sent .cta-row,
-  .cta-form.sent textarea,
+  .cta-form.sent .cta-msg,
   .cta-form.sent .cta-submit,
   .cta-form.sent .cta-status { display: none; }
   .cta-form.sent .cta-success { display: block; }
   .cta-success-mark {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: #fff;
+    display: inline-grid;
+    place-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: var(--radius-pill);
+    background: var(--signal);
+    color: var(--on-signal);
     font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-weight: 600;
+    margin-bottom: var(--space-4);
   }
-  .cta-success-title {
-    font-family: var(--display);
-    font-size: var(--step-1);
-    color: var(--ink);
-    margin-bottom: 0.4rem;
+  .cta-success-title { font-family: var(--font-display); font-size: var(--fs-heading); font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: var(--space-2); }
+  .cta-success-sub { color: var(--ink-muted); }
+  @media (max-width: 860px) {
+    .cta-block { grid-template-columns: 1fr; }
   }
-  .cta-success-sub { font-size: var(--step-0); color: var(--ink-soft); }
   @media (max-width: 520px) {
     .cta-row { flex-direction: column; }
+    .cta-info > div { grid-template-columns: 1fr; gap: var(--space-1); }
   }
-
-  .foot { padding-block: 2rem; }
-  .foot-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: var(--step--1);
-    color: var(--ink-soft);
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .foot-links { display: flex; gap: 1.5rem; }
-  .foot-links a { text-decoration: none; }
-  .foot-links a:hover { color: var(--accent); }
 </style>
 
 <script>
@@ -251,7 +165,7 @@ const faqs = [
     if (form.classList.contains("sent")) return; // już wysłane - blokuj dubel
 
     status.className = "cta-status";
-    status.textContent = "Wysyłam…";
+    status.textContent = form.dataset.sending ?? "…";
     submit.disabled = true;
 
     try {
@@ -269,8 +183,7 @@ const faqs = [
       }
     } catch {
       status.className = "cta-status err";
-      status.textContent =
-        "Nie udało się wysłać. Napisz proszę na kamil@softarm.pl.";
+      status.textContent = form.dataset.error ?? "Error";
       submit.disabled = false; // pozwól spróbować ponownie tylko po błędzie
     }
   });

@@ -1,0 +1,17 @@
+---
+import Base from "../../../layouts/Base.astro";
+import Nav from "../../../components/Nav.astro";
+import Writing from "../../../components/Writing.astro";
+import Footer from "../../../components/Footer.astro";
+import { dicts, writingPath } from "../../../i18n";
+
+const lang = "en";
+const t = dicts[lang].writing;
+---
+<Base lang={lang} title={t.metaTitle} description={t.metaDescription} alternates={{ pl: writingPath("pl"), en: writingPath("en") }}>
+  <Nav lang={lang} switchHref={writingPath("pl")} />
+  <main>
+    <Writing lang={lang} />
+  </main>
+  <Footer lang={lang} />
+</Base>

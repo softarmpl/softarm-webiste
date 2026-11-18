@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Static single-page marketing/portfolio site built with Astro. Content is in Polish. It sells a "MVP in 5 weeks, fixed price" offer and showcases past projects. No backend, no database - `astro build` outputs static files to `dist/` for hosting on Netlify/Vercel/Cloudflare Pages.
+Static personal site of Kamil Wałdoch (softarm.pl), built with Astro. It presents him as a Tech Lead & Solutions Architect: hero, about, selected work, experience, writing, a small "working with me through SoftArm" section, a testimonial and contact. Bilingual: Polish at `/`, English at `/en/`. No backend; the contact form posts to Web3Forms. `astro build` outputs static files to `dist/`, deployed to GitHub Pages by `.github/workflows/deploy.yml` on push to `main`.
 
-Note: the repo is migrating away from a former Next.js + TinaCMS stack (visible as deletions in git). Ignore any leftover `pnpm-lock.yaml`; the active package manager is **npm** (`package-lock.json`). Requires Node >= 22.12.
+Source of truth for copy and facts lives in Kamil's Obsidian vault (`Kamil/MarkaOsobista/Strona softarm.pl - nowa wersja.md`, facts in `Kamil/Kariera/AGENTS.md`). Do not add claims that are not there. The job search is discreet: never add "open to work"-style wording.
 
 ## Commands
 
@@ -21,15 +21,15 @@ There are no tests, linters, or formatters configured.
 
 ## Architecture
 
-Single page composed from section components - one file = one section:
-
-- `src/pages/index.astro` - the only route; imports and orders every section component (Nav, Hero, How, Projects, Why, Contact).
-- `src/layouts/Base.astro` - HTML shell: `<head>`, meta/SEO defaults (overridable via `title`/`description` props), Google Fonts (Fraunces / Inter / IBM Plex Mono), and `<slot />`.
-- `src/components/*.astro` - one section each. Each owns its markup + a scoped `<style>` block. Section-specific content data lives in a plain array declared in the component's frontmatter (top of file) - e.g. the `projects` array in `Projects.astro`. Edit content by editing that array, not the markup.
-- `src/styles/global.css` - the design system, imported once by `Base.astro`. Holds all design tokens in `:root` (colors `--ink`/`--paper`/`--accent`, font stacks `--display`/`--body`/`--mono`, a fluid `clamp()` type scale `--step--1`…`--step-4`, `--maxw`, `--gutter`) plus shared classes used across sections: `.wrap` (centered max-width container), `section` padding, `.eyebrow` (mono section label), `.btn`/`.btn-primary`, `.rule` (hairline divider).
+- `src/i18n/pl.ts` / `src/i18n/en.ts` - all page copy, one dictionary per language with an identical shape (`Dict` type is derived from `pl`). Edit content here, not in markup.
+- `src/i18n/index.ts` - `dicts`, `SITE` (email, LinkedIn), path helpers `homePath`, `postPath`, `otherLang`.
+- `src/components/Home.astro` - the home page for a given `lang`; orders sections (Nav, Hero, About, Projects, Experience, Writing, Services, Testimonial, Contact, Footer). `src/pages/index.astro` and `src/pages/en/index.astro` just render it.
+- Each section component takes a `lang` prop and reads its texts from the dictionary; it owns its markup and a scoped `<style>`.
+- Writing: content collection defined in `src/content.config.ts` (glob loader over `src/content/writing/{pl,en}/*.md`). Frontmatter: `title`, `lead`, `date`, `lang`, `slug`, `translation` (slug of the other-language version). Routes: `src/pages/teksty/[slug].astro` (PL) and `src/pages/en/writing/[slug].astro` (EN), both via `src/layouts/Post.astro`.
+- `src/layouts/Base.astro` - HTML shell: `lang`, title/description, canonical, hreflang alternates, Open Graph, JSON-LD `Person`, fonts, analytics.
+- `src/styles/global.css` - design tokens in `:root` and shared classes (`.wrap`, `.eyebrow`, `.btn`, `.rule`).
 
 ### Conventions
-- Global tokens and shared/reusable classes go in `global.css`; anything used by only one section stays in that component's scoped `<style>`. Reference tokens via `var(--…)` rather than hardcoding colors/sizes.
-- The type scale is fluid (`clamp`), so prefer `--step-*` variables over fixed font sizes.
-- Copy is Polish. Unfilled placeholders are marked with square brackets `[ ]` (e.g. `[Twoje imię]`, `[twój@email.pl]`, `[link do Calendly]`, `[link do LinkedIn]`, price ranges `[X–Y] zł`) - search for these to find what still needs real values. See README.md for the full checklist and which files each appears in.
-```
+- Global tokens and shared classes go in `global.css`; section-only styles stay scoped in the component. Use `var(--…)` and the fluid `--step-*` scale.
+- Any copy change must be made in both `pl.ts` and `en.ts`.
+- Copy style: plain language, no em-dashes, no corporate filler, clients anonymised.

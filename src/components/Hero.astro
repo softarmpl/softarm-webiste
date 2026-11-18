@@ -1,114 +1,138 @@
 ---
+import { dicts, type Lang } from "../i18n";
+interface Props { lang: Lang }
+const t = dicts[Astro.props.lang].hero;
+const name = t.name.replace(/\.$/, "");
+// Każde słowo nagłówka w osobnej masce, żeby wjechało od dołu. Kropka przyklejona do ostatniego.
+const words = name.split(" ");
+// Eyebrow "Imię · rola": na telefonie dwie linie obok zdjęcia, separator ukryty.
+const [eyeName, eyeRole] = t.eyebrow.split(" · ");
 ---
 <section id="top" class="hero">
   <div class="wrap">
-    <h1 class="hero-title">
-      Twój produkt online<br />
-      w <span class="hl">5 tygodni</span>.<br />
-      Stała cena, gwarancja terminu.
-    </h1>
-    <p class="hero-sub">
-      Buduję MVP od pomysłu do działającego produktu - jedna osoba, pełna
-      odpowiedzialność, 16 lat doświadczenia w branżach, gdzie błąd kosztuje
-      realne pieniądze. Bez agencji, bez zespołu w telefonie, bez niespodzianek
-      w budżecie.
-    </p>
-    <p class="offer">
-      <strong>Od 35 000&nbsp;zł netto</strong> · stała cena. Nie zdążę na
-      termin — <strong>dokańczam za&nbsp;darmo.</strong>
-    </p>
-    <div class="hero-actions">
-      <a href="#kontakt" class="btn btn-primary">Umów bezpłatną rozmowę →</a>
-      <a href="#efekty" class="hero-link">Zobacz projekty</a>
+    <div class="hero-grid">
+      <div class="hero-main">
+        <p class="eyebrow"><span>{eyeName}</span>{eyeRole && <><span class="eb-sep" aria-hidden="true"> · </span><span>{eyeRole}</span></>}</p>
+        <h1 class="hero-name">
+          {words.map((w, i) => (
+            <><span class="hm"><span class="hm-in" style={`--d:${i}`}>{w}{i === words.length - 1 && <span class="dot" aria-hidden="true"></span>}</span></span>{i < words.length - 1 && " "}</>
+          ))}
+        </h1>
+        <p class="hero-lead">{t.lead}</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-signal">{t.ctaPrimary} →</a>
+        </div>
+      </div>
+
+      <figure class="hero-photo">
+        <img src="/kamil-portrait.jpg" alt="Kamil Wałdoch" width="800" height="1000" />
+      </figure>
     </div>
 
-    <div class="dash" role="list" aria-label="Kluczowe liczby">
-      <div class="dash-cell" role="listitem">
-        <span class="dash-num">~40&nbsp;mln zł</span>
-        <span class="dash-label">zainwestowane przez platformę fintech, którą prowadziłem od zera</span>
-      </div>
-      <div class="dash-cell" role="listitem">
-        <span class="dash-num">16 lat</span>
-        <span class="dash-label">prowadzenia projektów od pierwszej rozmowy po wdrożenie</span>
-      </div>
-      <div class="dash-cell" role="listitem">
-        <span class="dash-num">0 włamań</span>
-        <span class="dash-label">w systemie z 4000 użytkowników, który sam był celem realnych ataków</span>
-      </div>
-    </div>
+    <ul class="hero-stats">
+      {t.stats.map((s) => (
+        <li><strong>{s.n}</strong><span>{s.l}</span></li>
+      ))}
+    </ul>
   </div>
 </section>
 
 <style>
-  .hero { padding-top: clamp(3rem, 7vw, 5.5rem); }
-  .hero-title {
-    font-size: var(--step-4);
-    max-width: 15ch;
-    margin-bottom: 1.6rem;
-    overflow-wrap: break-word;
-  }
-  .hl {
-    color: var(--accent);
-  }
-  .hero-sub {
-    max-width: 56ch;
-    font-size: var(--step-1);
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 1.6rem;
-  }
-  .offer { margin-bottom: 2.2rem; }
-  .hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-bottom: clamp(3rem, 7vw, 5rem);
-  }
-  .hero-link {
-    font-weight: 600;
-    text-decoration: none;
-    border-bottom: 2px solid var(--line);
-    padding-bottom: 2px;
-    transition: border-color 0.15s ease;
-  }
-  .hero-link:hover { border-color: var(--accent); }
+  .hero { padding-top: clamp(var(--space-6), 8vw, var(--space-7)); padding-bottom: var(--space-6); }
 
-  /* Signature element - deska rozdzielcza liczb */
-  .dash {
+  .hero-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    border-top: 1px solid var(--ink);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+    align-items: end;
+    gap: clamp(var(--space-5), 5vw, var(--space-6));
   }
-  .dash-cell {
-    padding: 1.6rem 1.6rem;
-    border-right: 1px solid var(--line);
+  .hero-main .eyebrow { margin-bottom: var(--space-5); }
+  .hero-name {
+    /* 13vw: na bardzo wąskich ekranach (~320 px) najdłuższe słowo z kropką mieści się w linii */
+    font-size: min(var(--fs-display-xl), 13vw);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    max-width: 14ch;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+    margin-bottom: var(--space-5);
   }
-  .dash-cell:first-child { padding-left: 0; }
-  .dash-cell:last-child { border-right: 0; padding-right: 0; }
-  .dash-num {
+  /* Maska słowa: zapas na dole i górze, żeby nie ucinać znaków diakrytycznych i ogonków */
+  .hm { display: inline-block; overflow: hidden; white-space: nowrap; vertical-align: top; padding-block: 0.06em 0.1em; margin-block: -0.06em -0.1em; }
+  .hm-in { display: inline-block; }
+  .hero-lead { font-size: var(--fs-lead); line-height: 1.45; max-width: 48ch; }
+  .hero-actions { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; margin-top: var(--space-5); }
+
+  /* Portret w zwykłym prostokącie, bez zaokrągleń */
+  .hero-photo { margin: 0; }
+  .hero-photo img {
     display: block;
-    font-family: var(--mono);
-    font-size: var(--step-2);
-    font-weight: 500;
-    color: var(--ink);
-    letter-spacing: -0.02em;
-    margin-bottom: 0.6rem;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    object-position: 50% 30%;
   }
-  .dash-label {
-    display: block;
-    font-size: var(--step--1);
-    line-height: 1.4;
-    color: var(--ink-soft);
-    max-width: 30ch;
+
+  .hero-stats {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-top: clamp(var(--space-6), 8vw, var(--space-7));
+    border-top: 1px solid var(--line);
   }
-  @media (max-width: 760px) {
-    .dash { grid-template-columns: 1fr; }
-    .dash-cell {
-      border-right: 0;
+  .hero-stats li {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4) var(--space-4) 0 0;
+  }
+  .hero-stats li + li { padding-left: var(--space-4); border-left: 1px solid var(--line); }
+  .hero-stats strong {
+    font-family: var(--font-display);
+    font-size: var(--fs-heading);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--signal-ink);
+  }
+  .hero-stats span { font-size: var(--fs-small); color: var(--ink-muted); }
+
+  /* Wejście: słowa nagłówka spod maski, przyciski i liczby kaskadą, zdjęcie z lekkim zoomem.
+     Eyebrow i lead stoją od pierwszej klatki: lead to element LCP na telefonie,
+     a start z opacity 0 przesuwa pomiar LCP o czas animacji. Maska i zoom to sam transform, LCP bez zmian. */
+  .hero-photo { overflow: hidden; }
+  @media (prefers-reduced-motion: no-preference) {
+    .hm-in { animation: line-up 0.9s var(--ease-out) calc(0.05s + var(--d) * 0.09s) both; }
+    .hero-actions { animation: rise 0.8s var(--ease-out) 0.35s both; }
+    .hero-stats { animation: rise 0.8s var(--ease-out) 0.55s both; }
+    .hero-photo img { animation: settle 1.4s var(--ease-out) both; }
+    @keyframes settle { from { transform: scale(1.08); } }
+  }
+
+  @media (max-width: 820px) {
+    /* Zdjęcie jako mały portret obok imienia i roli, nie osobny blok nad nagłówkiem.
+       .hero-main znika z układu, jego dzieci stają się elementami siatki. */
+    .hero-grid { grid-template-columns: 64px minmax(0, 1fr); gap: 0 var(--space-3); align-items: center; }
+    .hero-main { display: contents; }
+    .hero-main > * { grid-column: 1 / -1; }
+    .hero-photo { grid-column: 1; grid-row: 1; width: 64px; }
+    .hero-photo img { aspect-ratio: 1; }
+    .hero-main > .eyebrow { grid-column: 2; grid-row: 1; margin: 0; line-height: 1.5; }
+    .eyebrow span { display: block; }
+    .eyebrow .eb-sep { display: none; }
+    .hero-name { margin-top: var(--space-5); }
+
+    /* Liczby w stałej kolumnie po lewej, opis w drugiej: wszystkie wiersze w tych samych liniach */
+    .hero-stats { grid-template-columns: 1fr; }
+    .hero-stats li, .hero-stats li + li {
+      display: grid;
+      grid-template-columns: minmax(0, 9.5rem) minmax(0, 1fr);
+      align-items: baseline;
+      gap: var(--space-3);
+      padding: var(--space-3) 0;
+      border-left: 0;
       border-bottom: 1px solid var(--line);
-      padding: 1.6rem 0;
     }
-    .dash-cell:last-child { border-bottom: 0; }
   }
 </style>

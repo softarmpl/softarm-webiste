@@ -1,55 +1,43 @@
 ---
-const projects = [
-  {
-    tag: "Fintech · crowdfunding",
-    title: "Platforma inwestycyjna dla start-upów",
-    metric: "~40 mln zł",
-    metricLabel: "zainwestowane · 6 lat działania",
-    challenge:
-      "Platforma, przez którą przepływają realne pieniądze inwestorów - gdzie błąd oznacza straty i utratę zaufania, a regulacje nie zostawiają miejsca na skróty.",
-    role: "Prowadziłem projekt od koncepcji do wdrożenia: architektura, kluczowe decyzje technologiczne, rozwój produktu we współpracy z biznesem.",
-  },
-  {
-    tag: "Cybersecurity",
-    title: "System analizy ruchu sieciowego",
-    metric: "0 włamań",
-    metricLabel: "4000 użytkowników · system pod realnym ostrzałem",
-    challenge:
-      "System, który sam był celem ataków. Bezpieczeństwo nie było funkcją, było fundamentem - rozwiązanie musiało wytrzymać próby włamań realnych przeciwników.",
-    role: "Architektura, prowadzenie zespołu i wdrożenie w chmurze AWS. System przetwarzał i udostępniał do dalszej analizy setki gigabajtów danych.",
-  },
-  {
-    tag: "Fintech · family office",
-    title: "Platforma zarządzania majątkiem",
-    metric: "SOC 2",
-    metricLabel: "certyfikacja w toku · współpraca 2+ lata",
-    challenge:
-      "Segment, w którym klient powierza aplikacji pełny obraz swoich finansów. Połączenie głębokiej domeny finansowej z najwyższymi wymogami bezpieczeństwa.",
-    role: "Kontakt z klientem, prowadzenie zespołu, nadzór nad developerami, wdrożenie w AWS. Prowadzę projekt przez certyfikację bezpieczeństwa SOC 2 od strony technologii.",
-  },
-];
+import { dicts, type Lang } from "../i18n";
+import SectionHeader from "./SectionHeader.astro";
+interface Props { lang: Lang }
+const t = dicts[Astro.props.lang].work;
 ---
-<section id="efekty" class="proj">
+<section id="work" class="proj">
   <div class="wrap">
-    <div class="proj-head">
-      <p class="eyebrow">Dowód, że dowożę</p>
-      <h2 class="proj-title">Za Twoim projektem stoi 16 lat z branż, gdzie błąd kosztuje&nbsp;naprawdę.</h2>
-    </div>
+    <SectionHeader eyebrow={t.eyebrow} title={t.title} />
 
-    <div class="cards">
-      {projects.map((p) => (
+    <div class="cards" data-reveal>
+      {t.projects.map((p) => (
         <article class="card">
-          <div class="card-top">
-            <span class="card-tag">{p.tag}</span>
-            <div class="card-metric">
-              <span class="card-num">{p.metric}</span>
-              <span class="card-mlabel">{p.metricLabel}</span>
-            </div>
-          </div>
+          <span class="card-tag label">{p.tag}</span>
           <h3 class="card-title">{p.title}</h3>
-          <p class="card-challenge">{p.challenge}</p>
-          <hr class="rule card-div" />
-          <p class="card-role"><span>Moja rola.</span> {p.role}</p>
+          <p class="card-metric">
+            {p.metric && <span class="card-num">{p.metric}</span>}
+            <span class="card-mlabel">{p.metricLabel}</span>
+          </p>
+          <dl class="card-body">
+            <div>
+              <dt class="label">{t.labels.problem}</dt>
+              <dd>{p.problem}</dd>
+            </div>
+            <div>
+              <dt class="label">{t.labels.did}</dt>
+              <dd>{p.did}</dd>
+            </div>
+            {p.result && (
+              <div class="card-result">
+                <dt class="label">{t.labels.result}</dt>
+                <dd>{p.result}</dd>
+              </div>
+            )}
+          </dl>
+          {p.stack.length > 0 && (
+            <ul class="card-stack">
+              {p.stack.map((s) => <li>{s}</li>)}
+            </ul>
+          )}
         </article>
       ))}
     </div>
@@ -57,57 +45,49 @@ const projects = [
 </section>
 
 <style>
-  .proj-head { max-width: 60ch; margin-bottom: clamp(2.5rem, 6vw, 4rem); }
-  .proj-title { font-size: var(--step-3); margin-bottom: 1.2rem; }
-
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    gap: 1.5rem;
-  }
-  .card {
-    background: var(--paper-pure);
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr));
+    gap: 1px;
+    background: var(--line);
     border: 1px solid var(--line);
-    padding: clamp(1.5rem, 3vw, 2rem);
+  }
+  /* Karty stykają się, linie między nimi to tło siatki */
+  .card {
+    background: var(--ground);
+    padding: clamp(var(--space-4), 3.5vw, var(--space-5));
     display: flex;
     flex-direction: column;
-    transition: border-color 0.18s ease, transform 0.18s ease;
-  }
-  .card:hover { border-color: var(--accent); transform: translateY(-3px); }
-  .card-top {
-    display: flex;
-    justify-content: space-between;
     align-items: flex-start;
-    gap: 1rem;
-    margin-bottom: 1.2rem;
+    transition: background 0.15s ease;
   }
-  .card-tag {
-    font-family: var(--mono);
-    font-size: var(--step--1);
-    letter-spacing: 0.04em;
-    color: var(--ink-soft);
-    padding-top: 0.35rem;
-  }
-  .card-metric { text-align: right; flex-shrink: 0; }
+  .card:hover { background: var(--ground-raised); }
+  .card-tag { margin-bottom: var(--space-4); }
+  .card-title { font-size: var(--fs-heading); margin-bottom: var(--space-3); max-width: 22ch; text-wrap: balance; }
+  .card-metric { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-1) var(--space-3); margin-bottom: var(--space-5); }
   .card-num {
-    display: block;
-    font-family: var(--mono);
-    font-size: var(--step-1);
-    font-weight: 500;
-    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: var(--fs-heading);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--signal-ink);
+    white-space: nowrap;
   }
-  .card-mlabel {
-    display: block;
-    font-size: 0.72rem;
-    color: var(--ink-soft);
-    max-width: 18ch;
-    margin-left: auto;
-    line-height: 1.35;
-    margin-top: 0.25rem;
+  .card-mlabel { font-size: var(--fs-small); color: var(--ink-muted); }
+  .card-body { display: flex; flex-direction: column; gap: var(--space-4); align-self: stretch; }
+  .card-body dt { margin-bottom: var(--space-2); }
+  .card-body dd { font-size: 1rem; line-height: 1.55; color: var(--ink-muted); }
+  .card-result { padding-top: var(--space-4); border-top: 1px solid var(--line); }
+  .card-result dt { color: var(--signal-ink); }
+  .card-result dd { color: var(--ink); }
+  .card-stack { list-style: none; display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-5); }
+  .card-stack li {
+    font-size: 0.8125rem;
+    font-weight: 400;
+    color: var(--ink-muted);
+    box-shadow: inset 0 0 0 1px var(--control);
+    border-radius: var(--radius-pill);
+    padding: 0.25rem 0.7rem;
   }
-  .card-title { font-size: var(--step-1); margin-bottom: 0.8rem; }
-  .card-challenge { color: var(--ink-soft); font-size: var(--step-0); margin-bottom: 1.2rem; }
-  .card-div { margin-bottom: 1.2rem; }
-  .card-role { font-size: var(--step--1); line-height: 1.5; margin-top: auto; }
-  .card-role span { color: var(--accent); font-weight: 600; }
 </style>
