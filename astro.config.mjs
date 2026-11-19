@@ -6,4 +6,6 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
     site: 'https://softarm.pl',
     integrations: [sitemap()],
+    // CSS wstawiony w HTML: pierwsze malowanie nie czeka na osobne pliki .css
+    build: { inlineStylesheets: 'always' },
 });

@@ -1,4 +1,12 @@
 ---
+// Fonty hostowane razem ze stroną: bez blokującego CSS z innej domeny przed pierwszym malowaniem.
+import "@fontsource/albert-sans/300.css";
+import "@fontsource/albert-sans/300-italic.css";
+import "@fontsource/albert-sans/400.css";
+import "@fontsource/albert-sans/500.css";
+import "@fontsource/albert-sans/600.css";
+import "@fontsource/nata-sans/700.css";
+import "@fontsource/nata-sans/800.css";
 import "../styles/global.css";
 import Analytics from "../components/Analytics.astro";
 import { dicts, SITE, writingPath, type Lang } from "../i18n";
@@ -71,9 +79,6 @@ const person = {
     <link rel="alternate" type="application/rss+xml" title={rss.title} href={rss.href} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Nata+Sans:wght@700;800&display=swap" rel="stylesheet" />
     <script type="application/ld+json" set:html={JSON.stringify(person)} />
     {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   </head>
