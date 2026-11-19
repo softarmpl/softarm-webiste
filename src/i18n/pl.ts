@@ -6,7 +6,7 @@ export const pl = {
   meta: {
     title: "Kamil Wałdoch: Tech Lead i architekt oprogramowania",
     description:
-      "Pomagam właścicielom firm zdecydować, czy produkt jest gotowy do uruchomienia, gdzie są słabe punkty i ile będzie kosztować utrzymanie. Tech Lead i architekt, 16 lat w projektach IT.",
+      "Pomagam właścicielom firm zdecydować, czy produkt jest gotowy do uruchomienia, jakie są zagrożenia i ile będzie kosztować utrzymanie. Tech Lead i architekt, 16 lat w projektach IT.",
     jobTitle: "Tech Lead i architekt oprogramowania",
     knowsAbout: ["architektura oprogramowania", "prowadzenie zespołów IT", "audyt IT", "AI w projektach IT", "SOC 2"],
   },

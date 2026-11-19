@@ -7,7 +7,7 @@ export const en: Dict = {
   meta: {
     title: "Kamil Wałdoch: Tech Lead & Solutions Architect",
     description:
-      "I help business owners decide whether a product is ready to launch, where the weak spots are and what it will cost to run. Tech Lead and architect, 16 years in software.",
+      "I help business owners decide whether a product is ready to launch, what the risks are and what it will cost to run. Tech Lead and architect, 16 years in software.",
     jobTitle: "Tech Lead & Solutions Architect",
     knowsAbout: ["software architecture", "leading IT teams", "IT audit", "AI in software delivery", "SOC 2"],
   },
