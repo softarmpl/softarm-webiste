@@ -35,7 +35,7 @@ const t = d.contact;
         <input type="hidden" name="access_key" value="648bd1f4-c027-43d2-a56f-1301e439d1f7" />
         <input type="hidden" name="subject" value={t.form.subject} />
         <input type="hidden" name="from_name" value="softarm.pl" />
-        <input type="checkbox" name="botcheck" class="cta-hp" tabindex="-1" autocomplete="off" />
+        <input type="checkbox" name="botcheck" class="cta-hp" hidden tabindex="-1" autocomplete="off" />
 
         <div class="cta-row">
           <label class="cta-field">
@@ -113,14 +113,9 @@ const t = d.contact;
   .cta-form textarea:hover { border-color: var(--ink); }
   .cta-form textarea { resize: vertical; min-height: 160px; }
   .cta-submit { align-self: flex-start; }
-  /* honeypot - ukryty przed ludźmi, widoczny dla botów */
-  .cta-hp {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    opacity: 0;
-  }
+  /* honeypot - ukryty przed ludźmi i czytnikami ekranu (poza drzewem dostępności),
+     boty parsujące HTML nadal go widzą */
+  .cta-hp { display: none; }
   .cta-status { font-size: var(--fs-small); color: var(--ink-muted); min-height: 1.2em; }
   .cta-status.ok { color: var(--ink); }
   .cta-status.err { color: var(--error); }
