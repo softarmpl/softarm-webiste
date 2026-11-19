@@ -23,8 +23,8 @@ export const en: Dict = {
   },
   hero: {
     eyebrow: "Kamil Wałdoch · Tech Lead & Solutions Architect",
-    name: "Software projects without surprises",
-    lead: "I'll answer three questions: is it ready to launch, where are the weak spots, what will it cost to run.",
+    name: "Can you rely on what you're building?",
+    lead: "Code gets written fast now. I make sure you can trust it.",
     thesis: ["Writing code got cheaper.", "Decisions didn't."],
     ctaPrimary: "Let's talk",
     stats: [

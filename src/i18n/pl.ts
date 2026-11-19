@@ -22,8 +22,8 @@ export const pl = {
   },
   hero: {
     eyebrow: "Kamil Wałdoch · Tech Lead i architekt oprogramowania",
-    name: "Projekt IT bez niespodzianek",
-    lead: "Odpowiem ci, czy produkt jest gotowy do uruchomienia, gdzie są słabe punkty i ile będzie kosztować utrzymanie.",
+    name: "Czy możesz polegać na tym, co budujesz?",
+    lead: "Dziś kod powstaje szybko. Ja dbam o to, żeby można mu było zaufać.",
     thesis: ["Pisanie kodu staniało.", "Decyzje nie."],
     ctaPrimary: "Porozmawiajmy",
     stats: [
