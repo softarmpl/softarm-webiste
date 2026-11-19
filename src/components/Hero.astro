@@ -2,7 +2,9 @@
 import { dicts, type Lang } from "../i18n";
 interface Props { lang: Lang }
 const t = dicts[Astro.props.lang].hero;
-const name = t.name.replace(/\.$/, "");
+// Nagłówek-pytanie: pytajnik w kolorze sygnału zamiast kropki.
+const isQuestion = t.name.endsWith("?");
+const name = t.name.replace(/[.?]$/, "");
 // Każde słowo nagłówka w osobnej masce, żeby wjechało od dołu. Kropka przyklejona do ostatniego.
 const words = name.split(" ");
 // Eyebrow "Imię · rola": na telefonie dwie linie obok zdjęcia, separator ukryty.
@@ -15,7 +17,7 @@ const [eyeName, eyeRole] = t.eyebrow.split(" · ");
         <p class="eyebrow"><span>{eyeName}</span>{eyeRole && <><span class="eb-sep" aria-hidden="true"> · </span><span>{eyeRole}</span></>}</p>
         <h1 class="hero-name">
           {words.map((w, i) => (
-            <><span class="hm"><span class="hm-in" style={`--d:${i}`}>{w}{i === words.length - 1 && <span class="dot" aria-hidden="true"></span>}</span></span>{i < words.length - 1 && " "}</>
+            <><span class="hm"><span class="hm-in" style={`--d:${i}`}>{w}{i === words.length - 1 && (isQuestion ? <span class="q">?</span> : <span class="dot" aria-hidden="true"></span>)}</span></span>{i < words.length - 1 && " "}</>
           ))}
         </h1>
         <p class="hero-lead">{t.lead}</p>
@@ -38,6 +40,7 @@ const [eyeName, eyeRole] = t.eyebrow.split(" · ");
 </section>
 
 <style>
+  .q { color: var(--signal); }
   .hero { padding-top: clamp(var(--space-6), 8vw, var(--space-7)); padding-bottom: var(--space-6); }
 
   .hero-grid {
